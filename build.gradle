@@ -2,10 +2,42 @@
 
 buildscript {
     ext.kotlin_version = '1.3.41'
+    ext {
+        configs = [kotlin_version   : kotlin_version,
+                   applicationId    : 'com.newolf.weatherfunction',
+                   compileSdkVersion: 28,
+//                   buildToolsVersion: '25.0.0',
+                   minSdkVersion    : 21,
+                   targetSdkVersion : 28,
+                   versionCode      : 100,
+                   versionName      : '1.0.0',
+
+                   buglyIdDebug     : '', //debug
+                   buglyIdRelease   : '',
+
+
+        ]
+
+        def supportLibraryVersion = '27.1.0'
+        def androidX = '1.1.0'
+        def constraintLayoutVersion = '1.1.3'
+
+        deps = [appcompatX      : "androidx.appcompat:appcompat:$androidX",
+                coreX           : "androidx.core:core-ktx:$androidX",
+                gridlayoutV7    : "com.android.support:gridlayout-v7:$supportLibraryVersion",
+                supportV4       : "com.android.support:support-v4:$supportLibraryVersion",
+                vectorDrawable  : "com.android.support:support-vector-drawable:$supportLibraryVersion",
+                recyclerviewV7  : "com.android.support:recyclerview-v7:$supportLibraryVersion",
+                constraintLayout: "com.android.support.constraint:constraint-layout:$constraintLayoutVersion",
+                kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+
+        ]
+    }
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
@@ -19,7 +51,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 
