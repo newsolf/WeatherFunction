@@ -13,6 +13,11 @@ android {
         versionCode configs.versionCode
         versionName configs.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
     buildTypes {
         release {
@@ -66,7 +71,12 @@ dependencies {
     implementation deps.appcompatX
     implementation deps.coreX
     implementation deps.constraintLayout
+//    implementation deps.supportV4
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation  'com.tencent.bugly:crashreport_upgrade:1.4.1' //Bugly SDK
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'  //Bugly NDK
+    implementation 'com.blankj:utilcode:1.5.1'
 }
