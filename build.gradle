@@ -9,8 +9,8 @@ buildscript {
 //                   buildToolsVersion: '25.0.0',
                    minSdkVersion    : 21,
                    targetSdkVersion : 28,
-                   versionCode      : 100,
-                   versionName      : '1.0.0',
+                   versionCode      : 101,
+                   versionName      : '1.0.1',
 
                    buglyIdDebug     : 'be1962ab98', //debug
                    buglyIdRelease   : 'ffa2fe2d07',
@@ -42,7 +42,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "com.tencent.bugly:tinker-support:1.1.2"
+        classpath "com.tencent.bugly:tinker-support:latest.release"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
