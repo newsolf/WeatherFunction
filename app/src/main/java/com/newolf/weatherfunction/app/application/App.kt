@@ -1,6 +1,7 @@
 package com.newolf.weatherfunction.app.application
 
 import android.app.Application
+import com.baidu.mapapi.SDKInitializer
 import com.baidu.trace.LBSTraceClient
 import com.baidu.trace.Trace
 import com.baidu.trace.model.OnTraceListener
@@ -9,6 +10,7 @@ import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
 import com.newolf.weatherfunction.BuildConfig
+import com.newolf.weatherfunction.app.service.LocationService
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 
@@ -24,10 +26,12 @@ import com.tencent.bugly.beta.Beta
  * ================================================
  */
 class App : Application() {
+    lateinit var  mLocationService : LocationService
     override fun onCreate() {
         super.onCreate()
         initUtils(this)
         initBugly(this)
+        initLocation(this)
         initTrace(this)
     }
 
@@ -85,6 +89,11 @@ class App : Application() {
                 LogUtils.e("$p1:$p0")
             }
         })
+    }
+
+    private fun initLocation(app: App) {
+        mLocationService = LocationService(app)
+        SDKInitializer.initialize(app)
     }
 
 
