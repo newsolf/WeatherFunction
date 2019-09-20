@@ -125,9 +125,7 @@ class IndicatorView @JvmOverloads constructor(
         indicatorStrings = context.resources.getStringArray(indicatorStringsResourceId)
         indicatorColorIds = context.resources.getIntArray(indicatorColorsResourceId)
         LogUtils.e("indicatorStrings = ${indicatorStrings.size} ,indicatorColorIds = ${indicatorColorIds.size}")
-        if(indicatorStrings.size != indicatorColorIds.size) {
-            throw IllegalArgumentException("qualities和aqiColors的数组长度不一致！")
-        }
+        require(indicatorStrings.size == indicatorColorIds.size) { "qualities和aqiColors的数组长度不一致！" }
         for (i in indicatorStrings.indices) {
             addTextView(context, indicatorStrings[i], indicatorColorIds[i])
             if (i != indicatorStrings.size - 1) {
