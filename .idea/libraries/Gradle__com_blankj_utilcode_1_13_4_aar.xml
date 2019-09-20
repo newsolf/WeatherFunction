@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="Gradle: com.blankj:utilcode:1.13.4@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/61ffa72a1bc27ec6d73c9a4925f7a87b/jetified-utilcode-1.13.4/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/61ffa72a1bc27ec6d73c9a4925f7a87b/jetified-utilcode-1.13.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/61ffa72a1bc27ec6d73c9a4925f7a87b/jetified-utilcode-1.13.4/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.blankj/utilcode/1.13.4/95bd759aa5ec88bb059913ae800ea6ec73fec86c/utilcode-1.13.4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.blankj/utilcode/1.13.4/5cceb304b4dbd095aeb254ee45280895dbf799a3/utilcode-1.13.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

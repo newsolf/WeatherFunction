@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="textSize_50">50sp</dimen>
+    <dimen name="textSize_20">20sp</dimen>
+    <dimen name="textSize_30">30sp</dimen>
+    <dimen name="text_view_padding">20dp</dimen>
+    <dimen name="btn_height">60dp</dimen>
+    <dimen name="btn_padding">30dp</dimen>
+    <dimen name="btn_stroke">2dp</dimen>
+    <dimen name="btn_radius">8dp</dimen>
+    <dimen name="first_item_margin_top">20dp</dimen>
+    <dimen name="textSize_12">12sp</dimen>
+    <dimen name="textSize_16">16sp</dimen>
+    <dimen name="home_margin_left_right">10dp</dimen>
+    <dimen name="detail_margin_top">8dp</dimen>
+    <dimen name="detail_margin_bottom">4dp</dimen>
+    <dimen name="title_height">42dp</dimen>
+</resources>

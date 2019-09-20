@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">婕婕天气</string>
+    <string name="jump">跳过 %1$ds</string>
+    <string name="start_location">定位</string>
+    <string name="stop_location">停止</string>
+    <string name="content_description_default">图片描述</string>
+    <string name="navigation_drawer_open">打开抽屉</string>
+    <string name="navigation_drawer_close">关闭抽屉</string>
+    <string name="permission_rationale_message">您已拒绝我们申请授权，请同意授权，否则该功能不能正常使用！</string>
+    <string name="permission_denied_forever_message">我们需要您所拒绝的某些权限或系统未能应用失败，请手动设置到页面授权，否则该功能不能正常使用！</string>
+    <string name="app_exit">再按一次退出</string>
+</resources>
