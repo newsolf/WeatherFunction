@@ -42,20 +42,36 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initListener() {
-
     }
+
+
+//    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+//        ToastUtils.showShort("onKeyDown")
+//        if (keyCode == KeyEvent.KEYCODE_BACK && event?.action == KeyEvent.ACTION_DOWN) {
+//            if (System.currentTimeMillis() - lastTime > 2000) {
+//                ToastUtils.setMsgColor(ResUtils.getColor(R.color.colorAccent))
+//                ToastUtils.showShort(R.string.app_exit)
+//                lastTime = System.currentTimeMillis()
+//            } else {
+//                ActivityUtils.finishAllActivities()
+//            }
+//            return true
+//        }
+//        return super.onKeyDown(keyCode, event)
+//    }
 
 
     override fun onBackPressed() {
-        if (System.currentTimeMillis() - lastTime < 1000) {
+
+        ToastUtils.showShort("onBackPressed")
+        if (System.currentTimeMillis() - lastTime < 2000) {
             super.onBackPressed()
         } else {
-            lastTime = System.currentTimeMillis()
-            ToastUtils.setMsgColor(ResUtils.getColor(R.color.colorAccent))
+            ToastUtils.setBgColor(ResUtils.getColor(R.color.colorAccent))
             ToastUtils.showShort(R.string.app_exit)
         }
-
+        lastTime = System.currentTimeMillis();
+        TODO("为啥不起作用呢？")
     }
-
 
 }

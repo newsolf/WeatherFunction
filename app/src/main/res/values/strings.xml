@@ -14,4 +14,6 @@
     <string name="title_forecast_module">Foracast</string>
     <string name="title_aqi_module">Aqi</string>
     <string name="title_index_module">Index</string>
+    <string name="app_enter">Enter</string>
+    <string name="please_waite_current_city">Please waite get current city location</string>
 </resources>
