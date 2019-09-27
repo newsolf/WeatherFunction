@@ -11,13 +11,16 @@ import com.blankj.utilcode.util.PermissionUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.newolf.weatherfunction.app.Navigate
 import com.newolf.weatherfunction.app.application.App
-import com.newolf.weatherfunction.app.base.BaseActivity
+import com.newolf.weatherfunction.app.base.BaseVMActivity
 import com.newolf.weatherfunction.app.helper.DialogHelper
 import com.newolf.weatherfunction.app.service.LocationService
+import com.newolf.weatherfunction.model.viewmodel.CityCodeViewModel
 import kotlinx.android.synthetic.main.activity_welcome.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class WelcomeActivity : BaseActivity {
-
+class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
+    override fun providerVMClass(): Class<CityCodeViewModel>? = CityCodeViewModel::class.java
 
     val millisInFuture: Long = 6000
     val countDownInterval: Long = 1000
@@ -28,7 +31,6 @@ class WelcomeActivity : BaseActivity {
     var hasAllPermission = false
     var cityCode = ""
 
-    constructor() : super()
 
     override fun bindLayout(): Int {
         return R.layout.activity_welcome
@@ -80,7 +82,10 @@ class WelcomeActivity : BaseActivity {
                 ToastUtils.showShort("获取到当前城市为： $currentCity")
                 if (longitude != null && latitude != null && longitude + latitude != 0.toDouble()) {
                     stopLocation()
-                    requestCityCode(longitude, latitude)
+                    GlobalScope.launch{
+                      requestCityCode(longitude, latitude)
+                    }
+
                 }
             }
         }
@@ -91,13 +96,28 @@ class WelcomeActivity : BaseActivity {
         mLocationService.start()
     }
 
-    private fun requestCityCode(longitude: Double, latitude: Double) {
+    private suspend fun requestCityCode(longitude: Double, latitude: Double) {
         if (NetworkUtils.isConnected()){
 //            根据接口获取cityCode
+
+//            CityCodeRepository().getCityCode(longitude.toString(),latitude.toString())
+            if (currentCity.endsWith("市")){
+                currentCity = currentCity.replace("市","")
+            }
+
+            mViewModel.getCityCodeByCityName(currentCity)
+            LogUtils.e(mViewModel.mCityCodeBean.value?.citycode)
+
+
         }else {
 //            根据本地json获取
         }
 
+
+    }
+
+    override fun startObserve() {
+        super.startObserve()
 
     }
 

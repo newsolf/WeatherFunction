@@ -8,11 +8,10 @@ import com.newolf.weatherfunction.home.DrawerMenuFragment
 import com.newolf.weatherfunction.home.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_app_bar_main.*
-import kotlin.properties.Delegates
 
 
 class MainActivity : BaseActivity() {
-    private var lastTime by Delegates.notNull<Long>()
+    private var lastTime :Long = 0
     override fun bindLayout(): Int {
         return R.layout.activity_main
     }
@@ -71,7 +70,6 @@ class MainActivity : BaseActivity() {
             ToastUtils.showShort(R.string.app_exit)
         }
         lastTime = System.currentTimeMillis();
-        TODO("为啥不起作用呢？")
     }
 
 }
