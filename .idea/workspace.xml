@@ -16,7 +16,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e4e024c7-d9b2-414e-a5a6-2c8536a9f942" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/app/api/service/WeatherService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/app/api/service/WeatherService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/model/CityCodeBean.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/model/CityCodeBean.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,20 +109,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/app/api/service/WeatherService.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="37" column="107" lean-forward="true" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="107" />
+            <state relative-caret-position="127">
+              <caret line="56" column="195" lean-forward="true" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="195" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/model/CityCodeBean.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+            <state relative-caret-position="295">
+              <caret line="131" column="15" selection-start-line="131" selection-start-column="15" selection-end-line="131" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -290,11 +290,11 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/app/api/BaseRepository.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/model/repository/CityCodeRepository.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/model/CityCodeBean.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/app/api/BaseResponse.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/model/viewmodel/CityCodeViewModel.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/WelcomeActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/app/api/service/WeatherService.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/model/CityCodeBean.kt" />
       </list>
     </option>
   </component>
@@ -787,7 +787,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570884472789</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add response">
+      <created>1570884915238</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1570884915238</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -801,10 +808,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1057" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.5" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.5" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -885,7 +891,8 @@
     <MESSAGE value="fix ui" />
     <MESSAGE value="add Retrofit" />
     <MESSAGE value="fix net" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix net" />
+    <MESSAGE value="add response" />
+    <option name="LAST_COMMIT_MESSAGE" value="add response" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.6.0/317a0c32108292fe363ce909731e8a10a4499fa0/converter-gson-2.6.0-sources.jar!/retrofit2/converter/gson/GsonConverterFactory.java">
@@ -1206,13 +1213,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/model/CityCodeBean.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/home/HomeFragment.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -1230,8 +1230,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/app/api/service/WeatherService.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="37" column="107" lean-forward="true" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="107" />
+        <state relative-caret-position="127">
+          <caret line="56" column="195" lean-forward="true" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="195" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/newolf/weatherfunction/model/CityCodeBean.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="131" column="15" selection-start-line="131" selection-start-column="15" selection-end-line="131" selection-end-column="15" />
         </state>
       </provider>
     </entry>
