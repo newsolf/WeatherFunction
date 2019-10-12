@@ -15,9 +15,9 @@ import com.newolf.weatherfunction.app.api.WeatherApiService
  * ================================================
  */
 class CityCodeRepository :BaseRepository() {
-    suspend fun getCityCode(lng :String,lat: String): BaseResponse {
-        return apiCall { WeatherApiService.service.getCityCode(lng,lat) }
-    }
+//    suspend fun getCityCode(lng :String,lat: String): BaseResponse {
+//        return apiCall { WeatherApiService.service.getCityCode(lng,lat) }
+//    }
     suspend fun getCityCodeByCityName(cityName :String): BaseResponse {
         return apiCall { WeatherApiService.service.getCityCodeByCityName(cityName) }
     }

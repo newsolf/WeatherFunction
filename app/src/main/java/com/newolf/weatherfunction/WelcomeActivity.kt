@@ -16,8 +16,6 @@ import com.newolf.weatherfunction.app.helper.DialogHelper
 import com.newolf.weatherfunction.app.service.LocationService
 import com.newolf.weatherfunction.model.viewmodel.CityCodeViewModel
 import kotlinx.android.synthetic.main.activity_welcome.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
     override fun providerVMClass(): Class<CityCodeViewModel>? = CityCodeViewModel::class.java
@@ -29,7 +27,7 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
     lateinit var mLocationService: LocationService
     lateinit var mLocationListener: BDAbstractLocationListener
     var hasAllPermission = false
-    var cityCode = ""
+    var cityCode :Int? = 0
 
 
     override fun bindLayout(): Int {
@@ -82,9 +80,10 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
                 ToastUtils.showShort("获取到当前城市为： $currentCity")
                 if (longitude != null && latitude != null && longitude + latitude != 0.toDouble()) {
                     stopLocation()
-                    GlobalScope.launch{
-                      requestCityCode(longitude, latitude)
-                    }
+                    requestCityCode(longitude,latitude)
+//                    GlobalScope.launch{
+//                      requestCityCode(longitude, latitude)
+//                    }
 
                 }
             }
@@ -96,7 +95,7 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
         mLocationService.start()
     }
 
-    private suspend fun requestCityCode(longitude: Double, latitude: Double) {
+    private  fun requestCityCode(longitude: Double, latitude: Double) {
         if (NetworkUtils.isConnected()){
 //            根据接口获取cityCode
 
@@ -107,10 +106,12 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
 
             mViewModel.getCityCodeByCityName(currentCity)
             LogUtils.e(mViewModel.mCityCodeBean.value?.citycode)
+            cityCode = mViewModel.mCityCodeBean.value?.citycode
 
 
         }else {
 //            根据本地json获取
+            LogUtils.e("no net ")
         }
 
 

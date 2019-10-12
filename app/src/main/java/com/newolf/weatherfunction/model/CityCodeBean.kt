@@ -1,7 +1,5 @@
 package com.newolf.weatherfunction.model
 
-import com.newolf.weatherfunction.app.api.BaseResponse
-
 
 /**
  * ================================================
@@ -13,5 +11,4 @@ import com.newolf.weatherfunction.app.api.BaseResponse
  * 历史:<br/>
  * ================================================
  */
- data class CityCodeBean (val citycode: String, val cityname: String, override val rcode: Int, override val rdesc: String):
-    BaseResponse(rcode, rdesc)
+ data class CityCodeBean (val citycode: String, val cityname: String,  val rcode: Int,  val rdesc: String)

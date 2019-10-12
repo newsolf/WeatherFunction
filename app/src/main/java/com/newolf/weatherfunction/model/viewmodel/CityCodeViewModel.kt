@@ -2,9 +2,9 @@ package com.newolf.weatherfunction.model.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.LogUtils
+import com.newolf.weatherfunction.app.api.BaseResponse
 import com.newolf.weatherfunction.app.base.BaseViewModel
 import com.newolf.weatherfunction.app.executeResponse
-import com.newolf.weatherfunction.model.CityCodeBean
 import com.newolf.weatherfunction.model.repository.CityCodeRepository
 
 /**
@@ -19,13 +19,16 @@ import com.newolf.weatherfunction.model.repository.CityCodeRepository
  */
 class CityCodeViewModel : BaseViewModel(){
     private val repository by lazy { CityCodeRepository() }
-    val mCityCodeBean: MutableLiveData<CityCodeBean> = MutableLiveData()
+    val mCityCodeBean: MutableLiveData<BaseResponse> = MutableLiveData()
 
     fun getCityCodeByCityName(cityName: String) {
         launch {
             val result = repository.getCityCodeByCityName(cityName)
-            LogUtils.e(result)
-            executeResponse(result, {LogUtils.e(result)  }, {LogUtils.e("error")})
+            LogUtils.e(result.rcode)
+            executeResponse(result, {
+                LogUtils.e(result.rcode,result.rdesc )
+                mCityCodeBean.value = result
+            }, {LogUtils.e("error")})
         }
     }
 }

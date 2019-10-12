@@ -11,4 +11,4 @@ package com.newolf.weatherfunction.app.api
  * ================================================
  */
 
-open class BaseResponse (open val rcode: Int, open val rdesc: String)
+open class BaseResponse (open val rcode: Int, open val rdesc: String, open val citycode: Int, open val cityname: String)
