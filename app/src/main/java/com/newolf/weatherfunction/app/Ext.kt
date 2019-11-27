@@ -18,7 +18,7 @@ import retrofit2.HttpException
  * ================================================
  */
 
-suspend fun executeResponse(response: BaseResponse, successBlock: suspend CoroutineScope.() -> Unit,
+suspend fun executeResponse(response: BaseResponse<Any>, successBlock: suspend CoroutineScope.() -> Unit,
                             errorBlock: suspend CoroutineScope.() -> Unit) {
     coroutineScope {
         if (response.rcode != 200) errorBlock()

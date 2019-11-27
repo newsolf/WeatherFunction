@@ -11,4 +11,41 @@ package com.newolf.weatherfunction.app.api
  * ================================================
  */
 
-open class BaseResponse (open val rcode: Int, open val rdesc: String, open val citycode: Int, open val cityname: String)
+data class BaseResponse<out T>(
+    val rcode: Int,
+    val rdesc: String,
+    val data: T
+)
+
+
+
+
+//    open val citycode: Int = 1,
+//    open val cityname: String = "",
+////                        TodayDetail
+//    val airpressure: String = "",
+//    val feelst: String = "",
+//    val humidity: String = "",
+//    val phenomena: String = "",
+//    val rain: String = "",
+//    val temperature: String = "",
+//    val updatetime: String = "",
+//    val winddirect: String = "",
+//    val windpower: String = "",
+//    val windspeed: String = "",
+////                        SevenDay
+//    val forecast: List<Forecast>,
+//    val suggestion: Suggestion,
+////                         AirLiveBean
+//    val AQI: String = "",
+//    val CO: String = "",
+//    val NO2: String = "",
+//    val PM10: String = "",
+//    val PM25: String = "",
+//    val SO2: String = "",
+//    val o3: String = "",
+//    val primary: String = "",
+//    val time: String = ""
+
+
+//)

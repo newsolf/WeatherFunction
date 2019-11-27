@@ -1,6 +1,8 @@
 package com.newolf.weatherfunction.app.api
 
 import com.newolf.weatherfunction.BuildConfig
+import com.newolf.weatherfunction.app.application.App
+import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -26,10 +28,12 @@ abstract class BaseRetrofitClient {
         get() {
             val builder = OkHttpClient.Builder()
             val logging = HttpLoggingInterceptor()
+            builder.addInterceptor(ResetfulApiInterceptor(App.CONTEXT))
             if (BuildConfig.DEBUG) {
                 logging.level = HttpLoggingInterceptor.Level.BODY
+                builder.addInterceptor(ChuckInterceptor(App.CONTEXT))
             } else {
-                logging.level = HttpLoggingInterceptor.Level.BASIC
+                logging.level = HttpLoggingInterceptor.Level.BODY
             }
 
             builder.addInterceptor(logging)

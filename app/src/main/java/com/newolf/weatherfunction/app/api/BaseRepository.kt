@@ -11,10 +11,14 @@ package com.newolf.weatherfunction.app.api
  * ================================================
  */
 open class BaseRepository {
-//    suspend fun <T : Any> apiCall(call: suspend () -> BaseResponse<T>): BaseResponse<T> {
-//        return call.invoke()
-//    }
-    suspend fun <T : BaseResponse> apiCall(call: suspend () -> T): T {
+    suspend fun <T : Any> apiCall(call: suspend () -> BaseResponse<T>): BaseResponse<T> {
         return call.invoke()
     }
+//    suspend fun <T : Any> apiCall(call: suspend () -> T): T {
+//
+//    LogUtils.e("" + call)
+//    val invoke = call.invoke()
+//    LogUtils.e(invoke)
+//    return invoke
+//    }
 }

@@ -2,20 +2,20 @@ package com.newolf.weatherfunction
 
 import android.os.CountDownTimer
 import android.text.TextUtils
+import androidx.lifecycle.Observer
 import com.baidu.location.BDAbstractLocationListener
 import com.baidu.location.BDLocation
 import com.blankj.utilcode.constant.PermissionConstants
-import com.blankj.utilcode.util.LogUtils
-import com.blankj.utilcode.util.NetworkUtils
-import com.blankj.utilcode.util.PermissionUtils
-import com.blankj.utilcode.util.ToastUtils
-import com.newolf.weatherfunction.app.Navigate
+import com.blankj.utilcode.util.*
 import com.newolf.weatherfunction.app.application.App
 import com.newolf.weatherfunction.app.base.BaseVMActivity
+import com.newolf.weatherfunction.app.constant.Constants
 import com.newolf.weatherfunction.app.helper.DialogHelper
 import com.newolf.weatherfunction.app.service.LocationService
 import com.newolf.weatherfunction.model.viewmodel.CityCodeViewModel
 import kotlinx.android.synthetic.main.activity_welcome.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
     override fun providerVMClass(): Class<CityCodeViewModel>? = CityCodeViewModel::class.java
@@ -27,7 +27,7 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
     lateinit var mLocationService: LocationService
     lateinit var mLocationListener: BDAbstractLocationListener
     var hasAllPermission = false
-    var cityCode :Int? = 0
+    var cityCode: String? = ""
 
 
     override fun bindLayout(): Int {
@@ -68,11 +68,17 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
     }
 
 
-
     private fun startLocation() {
         mLocationListener = object : BDAbstractLocationListener() {
             override fun onReceiveLocation(location: BDLocation?) {
                 currentCity = location?.city.toString()
+
+                if(TextUtils.isEmpty(currentCity)){
+                    ToastUtils.showShort("正在获取当前城市为，请等待...")
+                    LogUtils.e("未获取到当前城市")
+                    return
+                }
+
                 LogUtils.e("获取到当前城市为： $currentCity")
                 val longitude = location?.longitude
                 val latitude = location?.latitude
@@ -80,10 +86,10 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
                 ToastUtils.showShort("获取到当前城市为： $currentCity")
                 if (longitude != null && latitude != null && longitude + latitude != 0.toDouble()) {
                     stopLocation()
-                    requestCityCode(longitude,latitude)
-//                    GlobalScope.launch{
-//                      requestCityCode(longitude, latitude)
-//                    }
+//                    requestCityCode(longitude, latitude)
+                    GlobalScope.launch{
+                      requestCityCode(longitude, latitude)
+                    }
 
                 }
             }
@@ -99,17 +105,23 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
         if (NetworkUtils.isConnected()){
 //            根据接口获取cityCode
 
-//            CityCodeRepository().getCityCode(longitude.toString(),latitude.toString())
-            if (currentCity.endsWith("市")){
-                currentCity = currentCity.replace("市","")
+            if(TextUtils.isEmpty(currentCity)){
+                ToastUtils.showShort("获取城市错误")
+                return
             }
 
+//            CityCodeRepository().getCityCode(longitude.toString(),latitude.toString())
+            if (currentCity.endsWith("市")) {
+                currentCity = currentCity.replace("市", "")
+            }
+
+
+
             mViewModel.getCityCodeByCityName(currentCity)
-            LogUtils.e(mViewModel.mCityCodeBean.value?.citycode)
-            cityCode = mViewModel.mCityCodeBean.value?.citycode
 
 
-        }else {
+
+        } else {
 //            根据本地json获取
             LogUtils.e("no net ")
         }
@@ -118,9 +130,24 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
     }
 
     override fun startObserve() {
-        super.startObserve()
+        mViewModel.run {
+            mCityCodeBean.observe(this@WelcomeActivity, Observer {
+                it?.run {
+                    LogUtils.e(mViewModel.mCityCodeBean.value?.citycode)
+//                    101010100
+                    cityCode = mViewModel.mCityCodeBean.value?.citycode
+                    if (!TextUtils.isEmpty(cityCode)) {
+                        App.cityCode = cityCode.toString()
+                        SPUtils.getInstance().put(Constants.SP_STRING_CITY_CODE, cityCode.toString())
+                    }
+                }
+            })
 
+
+        }
     }
+
+
 
     override fun onStop() {
         super.onStop()
@@ -167,17 +194,23 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
 
 
     private fun nextToHome() {
-        if (!hasAllPermission){
+        if (!hasAllPermission) {
             DialogHelper.showOpenAppSettingDialog()
             return
         }
 
-        if(TextUtils.equals("当前",currentCity)){
+        if (TextUtils.equals("当前", currentCity)) {
             ToastUtils.showShort(R.string.please_waite_current_city)
             return
         }
-        Navigate.startMainActivity(this)
-        finish()
+
+        if (TextUtils.isEmpty(cityCode)) {
+
+        }
+
+
+//        Navigate.startMainActivity(this)
+//        finish()
     }
 
     override fun finish() {

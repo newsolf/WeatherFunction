@@ -9,8 +9,10 @@ import com.baidu.trace.model.OnTraceListener
 import com.baidu.trace.model.PushMessage
 import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.blankj.utilcode.util.Utils
 import com.newolf.weatherfunction.BuildConfig
+import com.newolf.weatherfunction.R
 import com.newolf.weatherfunction.app.api.ApiService
 import com.newolf.weatherfunction.app.service.LocationService
 import com.newolf.weatherfunction.app.utils.ResUtils
@@ -31,6 +33,7 @@ import kotlin.properties.Delegates
  */
 class App : Application() {
     companion object {
+        var cityCode: String = ""
         var CONTEXT: Context by Delegates.notNull()
     }
     lateinit var  mLocationService : LocationService
@@ -48,6 +51,7 @@ class App : Application() {
         Utils.init(app)
         LogUtils.getConfig().setLogSwitch(BuildConfig.DEBUG)
         ResUtils.init(app)
+        ToastUtils.setBgColor(ResUtils.getColor(R.color.colorAccent))
     }
 
     private fun initBugly(context: Application) {

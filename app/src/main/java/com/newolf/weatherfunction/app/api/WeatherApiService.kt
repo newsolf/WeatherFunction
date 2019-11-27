@@ -4,6 +4,7 @@ import com.blankj.utilcode.util.NetworkUtils
 import com.newolf.weatherfunction.BuildConfig
 import com.newolf.weatherfunction.app.api.service.WeatherService
 import com.newolf.weatherfunction.app.application.App
+import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.OkHttpClient
@@ -27,6 +28,9 @@ object WeatherApiService : BaseRetrofitClient() {
         val httpCacheDirectory = File(App.CONTEXT.cacheDir, "responses")
         val cacheSize = 10 * 1024 * 1024L // 10 MiB
         val cache = Cache(httpCacheDirectory, cacheSize)
+    if (BuildConfig.DEBUG){
+        builder.addInterceptor(ChuckInterceptor(App.CONTEXT))
+    }
         builder.cache(cache)
 //            .cookieJar(cookieJar)
             .addInterceptor { chain ->

@@ -2,10 +2,12 @@ package com.newolf.weatherfunction.model.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.LogUtils
-import com.newolf.weatherfunction.app.api.BaseResponse
 import com.newolf.weatherfunction.app.base.BaseViewModel
 import com.newolf.weatherfunction.app.executeResponse
+import com.newolf.weatherfunction.model.CityCodeBean
 import com.newolf.weatherfunction.model.repository.CityCodeRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * ================================================
@@ -19,16 +21,20 @@ import com.newolf.weatherfunction.model.repository.CityCodeRepository
  */
 class CityCodeViewModel : BaseViewModel(){
     private val repository by lazy { CityCodeRepository() }
-    val mCityCodeBean: MutableLiveData<BaseResponse> = MutableLiveData()
+    val mCityCodeBean: MutableLiveData<CityCodeBean> = MutableLiveData()
 
     fun getCityCodeByCityName(cityName: String) {
+//        launch {
+//            val result = repository.getCityCodeByCityName(cityName)
+//            executeResponse(result, {
+//                LogUtils.e(result.data)
+//                mCityCodeBean.value = result.data
+//            }, {LogUtils.e("error = ${result.rcode} , ${result.rdesc}")})
+//        }
+
         launch {
-            val result = repository.getCityCodeByCityName(cityName)
-            LogUtils.e(result.rcode)
-            executeResponse(result, {
-                LogUtils.e(result.rcode,result.rdesc )
-                mCityCodeBean.value = result
-            }, {LogUtils.e("error")})
+            val result = withContext(Dispatchers.IO) { repository.getCityCodeByCityName(cityName) }
+            executeResponse(result, { mCityCodeBean.value = result.data }, { LogUtils.e("error = ${result.rcode} , ${result.rdesc}") })
         }
     }
 }
