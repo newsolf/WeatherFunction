@@ -2,6 +2,7 @@ package com.newolf.weatherfunction.app.api.service
 
 import com.newolf.weatherfunction.app.api.BaseResponse
 import com.newolf.weatherfunction.model.CityCodeBean
+import com.newolf.weatherfunction.model.DetailBean
 import retrofit2.http.GET
 import retrofit2.http.Path
 import rx.Observable
@@ -30,7 +31,7 @@ public interface WeatherService {
      * response ： {"windspeed":"2.1","citycode":"101010100","airpressure":"1019.0","phenomena":"多云","rdesc":"Success","humidity":"45.0","updatetime":"2019-10-12 19:00","windpower":"微风","feelst":"15.8","winddirect":"东北风","rcode":200,"rain":"0.0","temperature":"15.8"}
      */
     @GET("/v2/weatherlive/YMFYB256AGFUZZE0ODQ3MZM1MZE2NTU=/{cityId}")
-    fun getWeatherLive(@Path("cityId") cityId: String): BaseResponse<String>
+    suspend fun getWeatherLive(@Path("cityId") cityId: String): BaseResponse<DetailBean>
 
     /**
      * 获取指定城市7日天气预报
@@ -67,7 +68,8 @@ public interface WeatherService {
      * @return http://service.envicloud.cn:8082/v2/citycode/YMFYB256AGFUZZE0ODQ3MZM1MZE2NTU= {lng}/{lat}
      */
     @GET("v2/locate/YMFYB256AGFUZZE0ODQ3MZM1MZE2NTU=/{lng}/{lat}")
-    suspend fun getCityCode(@Path("lng") lng: String,@Path("lat")lat: String): BaseResponse<String>
+    suspend fun getCityCode(@Path("lng") lng: String, @Path("lat") lat: String): BaseResponse<String>
+
     /**
      *
      * @param cityId

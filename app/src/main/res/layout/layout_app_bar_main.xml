@@ -46,7 +46,7 @@
                         android:background="@mipmap/weather_bg_1" />
 
                     <TextView
-                        android:id="@+id/publish_time_text_view"
+                        android:id="@+id/tvPublishTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -63,9 +63,9 @@
                         android:id="@+id/tvTemp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_above="@id/publish_time_text_view"
-                        android:layout_alignEnd="@id/publish_time_text_view"
-                        android:layout_alignRight="@id/publish_time_text_view"
+                        android:layout_above="@id/tvPublishTime"
+                        android:layout_alignEnd="@id/tvPublishTime"
+                        android:layout_alignRight="@id/tvPublishTime"
                         android:includeFontPadding="false"
                         android:textColor="@android:color/white"
                         android:textSize="88sp"
@@ -76,8 +76,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_above="@+id/tvTemp"
-                        android:layout_alignEnd="@+id/publish_time_text_view"
-                        android:layout_alignRight="@+id/publish_time_text_view"
+                        android:layout_alignEnd="@+id/tvPublishTime"
+                        android:layout_alignRight="@+id/tvPublishTime"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/textSize_30"
                         tools:text="小雨" />

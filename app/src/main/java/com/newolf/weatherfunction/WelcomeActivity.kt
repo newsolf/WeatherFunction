@@ -7,6 +7,7 @@ import com.baidu.location.BDAbstractLocationListener
 import com.baidu.location.BDLocation
 import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.*
+import com.newolf.weatherfunction.app.Navigate
 import com.newolf.weatherfunction.app.application.App
 import com.newolf.weatherfunction.app.base.BaseVMActivity
 import com.newolf.weatherfunction.app.constant.Constants
@@ -205,12 +206,13 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
         }
 
         if (TextUtils.isEmpty(cityCode)) {
-
+            ToastUtils.showShort(R.string.please_waite_current_code)
+            return
         }
 
 
-//        Navigate.startMainActivity(this)
-//        finish()
+        Navigate.startMainActivity(this)
+        finish()
     }
 
     override fun finish() {

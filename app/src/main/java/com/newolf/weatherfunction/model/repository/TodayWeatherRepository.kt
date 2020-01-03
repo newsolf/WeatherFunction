@@ -3,7 +3,7 @@ package com.newolf.weatherfunction.model.repository
 import com.newolf.weatherfunction.app.api.BaseRepository
 import com.newolf.weatherfunction.app.api.BaseResponse
 import com.newolf.weatherfunction.app.api.WeatherApiService
-import com.newolf.weatherfunction.model.CityCodeBean
+import com.newolf.weatherfunction.model.DetailBean
 
 /**
  * ================================================
@@ -17,7 +17,7 @@ import com.newolf.weatherfunction.model.CityCodeBean
  */
 class TodayWeatherRepository :BaseRepository() {
 
-    suspend fun getWeatherLive(cityCode :String): BaseResponse<String> {
+    suspend fun getWeatherLive(cityCode : String): BaseResponse<DetailBean> {
         return apiCall { WeatherApiService.service.getWeatherLive(cityCode) }
     }
 }
