@@ -33,6 +33,7 @@ import kotlin.properties.Delegates
  */
 class App : Application() {
     companion object {
+        lateinit var cityName: String
         var cityCode: String = ""
         var CONTEXT: Context by Delegates.notNull()
     }

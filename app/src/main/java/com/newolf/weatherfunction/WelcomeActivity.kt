@@ -140,6 +140,8 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
                     if (!TextUtils.isEmpty(cityCode)) {
                         App.cityCode = cityCode.toString()
                         SPUtils.getInstance().put(Constants.SP_STRING_CITY_CODE, cityCode.toString())
+                        App.cityName = currentCity
+                        SPUtils.getInstance().put(Constants.SP_STRING_CITY_NAME, currentCity)
                     }
                 }
             })

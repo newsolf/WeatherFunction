@@ -12,4 +12,5 @@ package com.newolf.weatherfunction.app.constant
  */
 object Constants {
     val SP_STRING_CITY_CODE = "sp_string_city_code"
+    val SP_STRING_CITY_NAME = "sp_string_city_name"
 }
