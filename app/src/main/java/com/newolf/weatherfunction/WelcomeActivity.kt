@@ -15,8 +15,6 @@ import com.newolf.weatherfunction.app.helper.DialogHelper
 import com.newolf.weatherfunction.app.service.LocationService
 import com.newolf.weatherfunction.model.viewmodel.CityCodeViewModel
 import kotlinx.android.synthetic.main.activity_welcome.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
     override fun providerVMClass(): Class<CityCodeViewModel>? = CityCodeViewModel::class.java
@@ -88,9 +86,9 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
                 if (longitude != null && latitude != null && longitude + latitude != 0.toDouble()) {
                     stopLocation()
 //                    requestCityCode(longitude, latitude)
-                    GlobalScope.launch{
+
                       requestCityCode(longitude, latitude)
-                    }
+
 
                 }
             }

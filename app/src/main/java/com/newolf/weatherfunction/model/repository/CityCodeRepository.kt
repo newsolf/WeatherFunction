@@ -1,8 +1,8 @@
 package com.newolf.weatherfunction.model.repository
 
-import com.newolf.weatherfunction.app.api.BaseRepository
 import com.newolf.weatherfunction.app.api.BaseResponse
 import com.newolf.weatherfunction.app.api.WeatherApiService
+import com.newolf.weatherfunction.app.api.BaseRepository
 import com.newolf.weatherfunction.model.CityCodeBean
 
 /**
@@ -15,7 +15,7 @@ import com.newolf.weatherfunction.model.CityCodeBean
  * 历史:<br/>
  * ================================================
  */
-class CityCodeRepository :BaseRepository() {
+class CityCodeRepository : BaseRepository() {
 //    suspend fun getCityCode(lng :String,lat: String): BaseResponse {
 //        return apiCall { WeatherApiService.service.getCityCode(lng,lat) }
 //    }

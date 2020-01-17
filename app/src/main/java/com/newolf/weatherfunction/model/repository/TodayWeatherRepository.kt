@@ -15,7 +15,7 @@ import com.newolf.weatherfunction.model.DetailBean
  * 历史:<br/>
  * ================================================
  */
-class TodayWeatherRepository :BaseRepository() {
+class TodayWeatherRepository : BaseRepository() {
 
     suspend fun getWeatherLive(cityCode : String): BaseResponse<DetailBean> {
         return apiCall { WeatherApiService.service.getWeatherLive(cityCode) }

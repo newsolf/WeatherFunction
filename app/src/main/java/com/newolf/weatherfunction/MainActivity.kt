@@ -58,15 +58,13 @@ class MainActivity : BaseVMActivity<TodayWeatherViewModel>() {
     private fun updateTodayWeather(cityCode: String) {
         LogUtils.e("cityCode = $cityCode")
         mViewModel.getTodayWeather(cityCode)
-
-        LogUtils.e("updateTodayWeather = ${mViewModel.mTodayWeatherBean.value}")
     }
 
     override fun startObserve() {
         mViewModel.run {
             mTodayWeatherBean.observe(this@MainActivity, Observer {
                 it?.run {
-                    LogUtils.e(it.updatetime)
+                    LogUtils.e("updatetime = ${it.updatetime}")
                     updateTodayWeatherUi(it)
 
                 }

@@ -6,8 +6,6 @@ import com.newolf.weatherfunction.app.base.BaseViewModel
 import com.newolf.weatherfunction.app.executeResponse
 import com.newolf.weatherfunction.model.CityCodeBean
 import com.newolf.weatherfunction.model.repository.CityCodeRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 /**
  * ================================================
@@ -33,7 +31,7 @@ class CityCodeViewModel : BaseViewModel(){
 //        }
 
         launch {
-            val result = withContext(Dispatchers.IO) { repository.getCityCodeByCityName(cityName) }
+            val result =   repository.getCityCodeByCityName(cityName)
             executeResponse(result, { mCityCodeBean.value = result.data }, { LogUtils.e("error = ${result.rcode} , ${result.rdesc}") })
         }
     }
