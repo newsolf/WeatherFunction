@@ -17,4 +17,7 @@
     <string name="app_enter">Enter</string>
     <string name="please_waite_current_city">Please waite get current city location</string>
     <string name="please_waite_current_code">Please waite get current city code</string>
+
+    <string name="detail_key_feelst">Body temperature</string>
+    <string name="detail_key_humidity">Humidity</string>
 </resources>

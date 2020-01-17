@@ -77,6 +77,7 @@ class MainActivity : BaseVMActivity<TodayWeatherViewModel>() {
         tvWeather.text = detailBean.phenomena
         tvTemp.text = detailBean.temperature
         tvPublishTime.text = detailBean.updatetime
+        homeFragment.updateTodayDetail(detailBean)
     }
 
     override fun initListener() {

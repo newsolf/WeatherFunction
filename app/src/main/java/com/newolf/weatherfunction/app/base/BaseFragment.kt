@@ -25,7 +25,7 @@ abstract class BaseFragment:Fragment(),IBaseView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        mContext = inflater.context
         return inflater.inflate(bindLayout(),container,false)
     }
 
