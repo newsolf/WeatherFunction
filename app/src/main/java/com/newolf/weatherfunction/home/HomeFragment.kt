@@ -2,6 +2,7 @@ package com.newolf.weatherfunction.home
 
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.LogUtils
 import com.newolf.weatherfunction.MainActivity
 import com.newolf.weatherfunction.R
@@ -25,6 +26,7 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
     }
 
     private lateinit var detailAdapter :DetailAdapter
+    private lateinit var forecastAdapter :ForecastAdapter
 
     override fun initView() {
         rvDetail.isNestedScrollingEnabled = false
@@ -32,6 +34,9 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
         detailAdapter =  DetailAdapter(null)
         rvDetail.adapter = detailAdapter
 
+        rvForecast.layoutManager = LinearLayoutManager(mContext)
+        forecastAdapter = ForecastAdapter(null)
+        rvForecast.adapter = forecastAdapter
 
     }
 
@@ -71,7 +76,7 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
 
     private fun updateSevenDayUI(sevenDay: SevenDay) {
         updateTodayDetailElse(sevenDay.forecast[0])
-
+        forecastAdapter.setNewData(sevenDay.forecast)
     }
 
     private fun updateTodayDetailElse(forecast: Forecast) {

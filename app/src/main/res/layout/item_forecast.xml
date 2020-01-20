@@ -8,7 +8,7 @@
     tools:ignore="RtlHardcoded">
 
     <TextView
-        android:id="@+id/week_text_view"
+        android:id="@+id/tvWeek"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -17,33 +17,33 @@
         tools:text="周五" />
 
     <TextView
-        android:id="@+id/date_text_view"
+        android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
-        android:layout_toRightOf="@id/week_text_view"
-        android:layout_alignBottom="@id/week_text_view"
+        android:layout_toRightOf="@id/tvWeek"
+        android:layout_alignBottom="@id/tvWeek"
         android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/textSize_12"
         tools:text="08.07" />
 
     <ImageView
-        android:id="@+id/weather_icon_image_view"
+        android:id="@+id/ivWeatherIcon"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="50dp"
-        android:layout_toRightOf="@id/date_text_view"
+        android:layout_toRightOf="@id/tvDate"
         android:contentDescription="@string/content_description_default"
         tools:src="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/weather_text_view"
+        android:id="@+id/tvWeather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="4dp"
-        android:layout_toRightOf="@id/weather_icon_image_view"
+        android:layout_toRightOf="@id/ivWeatherIcon"
         android:gravity="center"
         android:lines="1"
         android:textColor="@color/textColorDarkerGray"
@@ -51,7 +51,7 @@
         tools:text="多云转晴" />
 
     <TextView
-        android:id="@+id/temp_min_text_view"
+        android:id="@+id/tvTempMin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -62,21 +62,21 @@
         tools:text="13°" />
 
     <TextView
-        android:id="@+id/separator_text_view"
+        android:id="@+id/tvSeparator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/temp_min_text_view"
+        android:layout_toLeftOf="@id/tvTempMin"
         android:gravity="center"
         android:text="separator"
         android:textSize="@dimen/textSize_16" />
 
     <TextView
-        android:id="@+id/temp_max_text_view"
+        android:id="@+id/tvTempMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/separator_text_view"
+        android:layout_toLeftOf="@id/tvSeparator"
         android:gravity="center"
         android:lines="1"
         android:textSize="@dimen/textSize_16"

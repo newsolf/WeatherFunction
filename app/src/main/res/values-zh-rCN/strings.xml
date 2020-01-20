@@ -24,4 +24,5 @@
     <string name="detail_key_pcpn">降水量</string>
     <string name="detail_key_pop">降水概率</string>
     <string name="detail_key_vis">能见度</string>
+    <string name="forecast_adapter_week_today">今天</string>
 </resources>
