@@ -123,6 +123,13 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
         } else {
 //            根据本地json获取
             LogUtils.e("no net ")
+            cityCode =  SPUtils.getInstance().getString(Constants.SP_STRING_CITY_CODE,"101010100")
+            App.cityCode = cityCode.toString()
+
+            currentCity =  SPUtils.getInstance().getString(Constants.SP_STRING_CITY_NAME, "北京")
+            App.cityName = currentCity
+
+
         }
 
 
