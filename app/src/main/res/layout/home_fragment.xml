@@ -161,16 +161,16 @@
             android:elevation="3dp">
 
             <com.newolf.weatherfunction.app.widget.TitleView
-                android:id="@+id/index_title"
+                android:id="@+id/titleIndex"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/title_height"
                 titleView:titleViewText="@string/title_index_module" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/life_index_recycler_view"
+                android:id="@+id/rvLifeIndex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/index_title"
+                android:layout_below="@id/titleIndex"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="4dp"
                 tools:listitem="@layout/item_life_index" />

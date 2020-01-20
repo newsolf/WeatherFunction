@@ -16,16 +16,16 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/index_icon_image_view"
+            android:id="@+id/ivIndexIcon"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/content_description_default"
             android:scaleType="fitXY"
-            tools:srcCompat="@drawable/ic_index_shopping" />
+            tools:srcCompat="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/index_level_text_view"
+            android:id="@+id/tvIndexLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -35,7 +35,7 @@
             tools:text="基本适宜" />
 
         <TextView
-            android:id="@+id/index_name_text_view"
+            android:id="@+id/tvIndexName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

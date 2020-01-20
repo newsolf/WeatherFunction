@@ -25,4 +25,13 @@
     <string name="detail_key_pop">降水概率</string>
     <string name="detail_key_vis">能见度</string>
     <string name="forecast_adapter_week_today">今天</string>
+
+    <string name="life_key_air">Air</string>
+    <string name="life_key_comf">Comf</string>
+    <string name="life_key_drs">Drs</string>
+    <string name="life_key_flu">Flu</string>
+    <string name="life_key_sport">Sport</string>
+    <string name="life_key_trav">Trav</string>
+    <string name="life_key_uv">UV</string>
+    <string name="life_key_cw">CW</string>
 </resources>
