@@ -20,4 +20,8 @@
 
     <string name="detail_key_feelst">Body temperature</string>
     <string name="detail_key_humidity">Humidity</string>
+    <string name="detail_key_uv">UV level</string>
+    <string name="detail_key_pcpn">Precipitation</string>
+    <string name="detail_key_pop">Precipitation probability</string>
+    <string name="detail_key_vis">visibility</string>
 </resources>

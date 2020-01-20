@@ -20,4 +20,8 @@
 
     <string name="detail_key_feelst">体感温度</string>
     <string name="detail_key_humidity">湿度</string>
+    <string name="detail_key_uv">紫外线</string>
+    <string name="detail_key_pcpn">降水量</string>
+    <string name="detail_key_pop">降水概率</string>
+    <string name="detail_key_vis">能见度</string>
 </resources>

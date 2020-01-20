@@ -1,19 +1,24 @@
 package com.newolf.weatherfunction.home
 
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.blankj.utilcode.util.LogUtils
 import com.newolf.weatherfunction.R
-import com.newolf.weatherfunction.app.base.BaseFragment
+import com.newolf.weatherfunction.app.base.BaseVMFragment
 import com.newolf.weatherfunction.app.bean.TodayDetail
 import com.newolf.weatherfunction.model.DetailBean
+import com.newolf.weatherfunction.model.Forecast
+import com.newolf.weatherfunction.model.SevenDay
+import com.newolf.weatherfunction.model.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.home_fragment.*
 
-class HomeFragment : BaseFragment() {
-
+class HomeFragment : BaseVMFragment<HomeViewModel>() {
+    override fun providerVMClass(): Class<HomeViewModel>? = HomeViewModel::class.java
     companion object {
         fun newInstance() = HomeFragment()
     }
 
+    private lateinit var mCityCode:String
     override fun bindLayout(): Int {
         return R.layout.home_fragment
     }
@@ -25,10 +30,12 @@ class HomeFragment : BaseFragment() {
         rvDetail.layoutManager = GridLayoutManager(mContext,3)
         detailAdapter =  DetailAdapter(null)
         rvDetail.adapter = detailAdapter
+
+
     }
 
     override fun loadData() {
-
+        mViewModel.getWeatherForecast(mCityCode)
     }
 
     override fun initListener() {
@@ -36,7 +43,72 @@ class HomeFragment : BaseFragment() {
     }
 
     fun updateCity(cityCode: String) {
-        LogUtils.e("cityCode =  $cityCode")
+        LogUtils.e("updateCity cityCode =  $cityCode")
+        mCityCode = cityCode
+    }
+
+    override fun startObserve() {
+        mViewModel.run {
+            mSevenDayBean.observe(this@HomeFragment, Observer {
+                it?.run {
+                    LogUtils.e("mSevenDayBean = $it")
+                    updateSevenDayAndLifeUI(it)
+                }
+            })
+        }
+    }
+
+    private fun updateSevenDayAndLifeUI(sevenDay: SevenDay) {
+        updateCityName(sevenDay.cityname)
+        updateSevenDayUI(sevenDay)
+        updateLife(sevenDay)
+    }
+
+    private fun updateCityName(cityname: String) {
+
+    }
+
+    private fun updateSevenDayUI(sevenDay: SevenDay) {
+        updateTodayDetailElse(sevenDay.forecast[0])
+
+    }
+
+    private fun updateTodayDetailElse(forecast: Forecast) {
+        val detailList: MutableList<TodayDetail> = ArrayList()
+        forecast.apply {
+            detailList.add(
+                TodayDetail(
+                    R.mipmap.ic_launcher,
+                    R.string.detail_key_uv,
+                    this.uv
+                )
+            )
+            detailList.add(
+                TodayDetail(
+                    R.mipmap.ic_launcher,
+                    R.string.detail_key_pcpn,
+                    this.pcpn
+                )
+            )
+            detailList.add(
+                TodayDetail(
+                    R.mipmap.ic_launcher,
+                    R.string.detail_key_pop,
+                    this.pop
+                )
+            )
+            detailList.add(
+                TodayDetail(
+                    R.mipmap.ic_launcher,
+                    R.string.detail_key_vis,
+                    this.vis
+                )
+            )
+        }
+        detailAdapter.addData(detailList)
+    }
+
+    private fun updateLife(sevenDay: SevenDay) {
 
     }
 
@@ -57,34 +129,6 @@ class HomeFragment : BaseFragment() {
                     this.humidity + "%"
                 )
             )
-//            detailList.add(
-//                TodayDetail(
-//                    R.mipmap.ic_launcher,
-//                    R.string.detail_key_feel,
-//                    this.w + "°C"
-//                )
-//            )
-//            detailList.add(
-//                TodayDetail(
-//                    R.mipmap.ic_launcher,
-//                    R.string.detail_key_feel,
-//                    this.feelst + "°C"
-//                )
-//            )
-//            detailList.add(
-//                TodayDetail(
-//                    R.mipmap.ic_launcher,
-//                    R.string.detail_key_feel,
-//                    this.feelst + "°C"
-//                )
-//            )
-//            detailList.add(
-//                TodayDetail(
-//                    R.mipmap.ic_launcher,
-//                    R.string.detail_key_feel,
-//                    this.feelst + "°C"
-//                )
-//            )
         }
 
         detailAdapter.setNewData(detailList)
