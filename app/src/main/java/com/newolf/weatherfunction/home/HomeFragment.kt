@@ -3,6 +3,7 @@ package com.newolf.weatherfunction.home
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.blankj.utilcode.util.LogUtils
+import com.newolf.weatherfunction.MainActivity
 import com.newolf.weatherfunction.R
 import com.newolf.weatherfunction.app.base.BaseVMFragment
 import com.newolf.weatherfunction.app.bean.TodayDetail
@@ -65,7 +66,7 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
     }
 
     private fun updateCityName(cityname: String) {
-
+        (activity as MainActivity).updateCityName(cityname)
     }
 
     private fun updateSevenDayUI(sevenDay: SevenDay) {

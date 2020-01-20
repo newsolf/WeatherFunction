@@ -100,4 +100,9 @@ class MainActivity : BaseVMActivity<TodayWeatherViewModel>() {
         lastTime = System.currentTimeMillis();
     }
 
+    fun updateCityName(cityName: String) {
+        LogUtils.e("updateCityName cityName = $cityName")
+        supportActionBar?.title = cityName
+    }
+
 }

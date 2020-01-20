@@ -83,7 +83,7 @@
                         tools:text="小雨" />
 
                     <ImageView
-                        android:id="@+id/weather_icon_image_view"
+                        android:id="@+id/IvWeatherIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_above="@id/tvTemp"
@@ -102,6 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
+                    app:title="@string/app_name"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
