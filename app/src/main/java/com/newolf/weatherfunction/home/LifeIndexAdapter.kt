@@ -1,5 +1,6 @@
 package com.newolf.weatherfunction.home
 
+import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.newolf.weatherfunction.R
@@ -22,5 +23,6 @@ class LifeIndexAdapter(data: MutableList<LifeDetail>?) :
         item?.res?.let { helper?.setImageResource(R.id.ivIndexIcon, it) }
         item?.detailKeyRes?.let { helper?.setText(R.id.tvIndexName, it) }
         item?.detailValueLevel?.let { helper?.setText(R.id.tvIndexLevel, it) }
+        item?.detailValue?.let {helper?.itemView?.setOnClickListener {ToastUtils.showShort(item.detailValue)} }
     }
 }

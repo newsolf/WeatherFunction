@@ -188,7 +188,7 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
                 this.cw.txt
             ))
         }
-
+        LogUtils.e("lifeList = $lifeList")
         lifeIndexAdapter.setNewData(lifeList)
     }
 
