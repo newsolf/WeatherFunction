@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="IndicatorView">
+    <declare-styleable name="IndicatorViewJava">
         <attr name="marker" format="reference" />
         <attr name="indicatorValue" format="integer" />
         <attr name="textSize" format="dimension" />

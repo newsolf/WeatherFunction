@@ -16,12 +16,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.blankj.utilcode.util.LogUtils
 import com.newolf.weatherfunction.R
-
-
-
-
-
-
+import com.newolf.weatherfunction.app.utils.ResUtils
 
 
 /**
@@ -95,28 +90,28 @@ class IndicatorView @JvmOverloads constructor(
                 intervalValue.toFloat(), dm
             ).toInt()
 
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.IndicatorView)
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.IndicatorViewJava)
         this.markerId = typedArray.getResourceId(
-            R.styleable.IndicatorView_marker,
+            R.styleable.IndicatorViewJava_marker,
             R.drawable.ic_vector_indicator_down
         )
-        this.marker = drawableToBitmap(createVectorDrawable(markerId, R.color.indicator_color_1))
+        this.marker = drawableToBitmap(createVectorDrawable(markerId, ResUtils.getColor(R.color.indicator_color_1)))
         this.indicatorValue =
-            typedArray.getInt(R.styleable.IndicatorView_indicatorValue, indicatorValue)
+            typedArray.getInt(R.styleable.IndicatorViewJava_indicatorValue, indicatorValue)
         this.textSize =
-            typedArray.getDimensionPixelSize(R.styleable.IndicatorView_textSize, textSize)
+            typedArray.getDimensionPixelSize(R.styleable.IndicatorViewJava_textSize, textSize)
         this.intervalValue =
-            typedArray.getDimensionPixelSize(R.styleable.IndicatorView_intervalSize, intervalValue)
+            typedArray.getDimensionPixelSize(R.styleable.IndicatorViewJava_intervalSize, intervalValue)
         this.textColor = typedArray.getColor(
-            R.styleable.IndicatorView_textColor,
+            R.styleable.IndicatorViewJava_textColor,
             textColorId
         )
         this.indicatorStringsResourceId = typedArray.getInt(
-            R.styleable.IndicatorView_indicatorStrings,
+            R.styleable.IndicatorViewJava_indicatorStrings,
             indicatorStringsResourceId
         )
         this.indicatorColorsResourceId =
-            typedArray.getInt(R.styleable.IndicatorView_indicatorColors, indicatorColorsResourceId)
+            typedArray.getInt(R.styleable.IndicatorViewJava_indicatorColors, indicatorColorsResourceId)
         LogUtils.e("indicatorStringsResourceId $indicatorStringsResourceId ,indicatorColorsResourceId $indicatorColorsResourceId")
         typedArray.recycle()
     }
@@ -157,10 +152,12 @@ class IndicatorView @JvmOverloads constructor(
     }
 
 
-    private fun createVectorDrawable(drawableId: Int, @ColorInt colorInt: Int): Drawable {
+    private fun createVectorDrawable(drawableId:Int,@ColorInt colorInt: Int): Drawable {
+        LogUtils.e("createVectorDrawable drawableId = $drawableId,colorInt = $colorInt")
         val vectorDrawableCompat: VectorDrawableCompat? =
             VectorDrawableCompat.create(resources, drawableId, context.theme)
-        val drawable = vectorDrawableCompat as Drawable
+        vectorDrawableCompat as Drawable
+        val drawable = DrawableCompat.wrap(vectorDrawableCompat).mutate()
         DrawableCompat.setTint(drawable, colorInt)
         DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN)
         return drawable
@@ -233,7 +230,11 @@ class IndicatorView @JvmOverloads constructor(
             indicatorValue in 201..300 -> width * 4 / 6 + (indicatorValue - 200) * width / 6 / 100 + intervalValue * 4
             else -> width * 5 / 6 + (indicatorValue - 300) * width / 6 / 200 + intervalValue * 5
         }
-        canvas?.drawBitmap(marker, (left - marker.width / 2 - 2).toFloat(), this.paddingTopInXML.toFloat(), mPaint)
+
+        val leftFloat = (left - marker.width / 2 - 2).toFloat()
+        val topFloat = this.paddingTopInXML.toFloat()
+        LogUtils.e("drawMarkView canvas = $canvas, leftFloat = $leftFloat, topFloat = $topFloat,mPaint = $mPaint, marker {height = ${marker.height}, width = ${marker.width}}")
+        canvas?.drawBitmap(marker, leftFloat, topFloat, mPaint)
     }
 
 
@@ -277,9 +278,10 @@ class IndicatorView @JvmOverloads constructor(
                     indicatorTextColor = indicatorColorIds[5]
                 }
             }
-            marker.recycle()
-            marker = drawableToBitmap(createVectorDrawable(markerId, indicatorTextColor))
-            indicatorValueChangeListener!!.onChange(
+            LogUtils.e("indicatorTextColor = $indicatorTextColor")
+//            marker.recycle()
+//            marker = drawableToBitmap(createVectorDrawable(markerId, indicatorTextColor))
+            indicatorValueChangeListener?.onChange(
                 this.indicatorValue,
                 stateDescription,
                 indicatorTextColor

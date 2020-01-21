@@ -10,10 +10,8 @@ import com.newolf.weatherfunction.R
 import com.newolf.weatherfunction.app.base.BaseVMFragment
 import com.newolf.weatherfunction.app.bean.LifeDetail
 import com.newolf.weatherfunction.app.bean.TodayDetail
-import com.newolf.weatherfunction.model.DetailBean
-import com.newolf.weatherfunction.model.Forecast
-import com.newolf.weatherfunction.model.SevenDay
-import com.newolf.weatherfunction.model.Suggestion
+import com.newolf.weatherfunction.app.widget.IndicatorValueChangeListener
+import com.newolf.weatherfunction.model.*
 import com.newolf.weatherfunction.model.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.home_fragment.*
 
@@ -51,9 +49,24 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
 
     override fun loadData() {
         mViewModel.getWeatherForecast(mCityCode)
+        mViewModel.getAirLive(mCityCode)
     }
 
     override fun initListener() {
+        indicatorAQI.setIndicatorValueChangeListener(object :IndicatorValueChangeListener{
+            override fun onChange(
+                indicatorValue: Int,
+                stateDescription: String,
+                indicatorTextColor: Int
+            ) {
+                super.onChange(indicatorValue, stateDescription, indicatorTextColor)
+                LogUtils.e("indicatorValue = $indicatorValue , stateDescription = $stateDescription , indicatorTextColor = $indicatorTextColor")
+                tvQuality.text= stateDescription
+                tvQuality.setTextColor(indicatorTextColor)
+                tvAQI.setTextColor(indicatorTextColor)
+            }
+        })
+
 
     }
 
@@ -75,7 +88,21 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
                     updateSevenDayAndLifeUI(it)
                 }
             })
+            mAirLiveBean.observe(this@HomeFragment, Observer {
+                it?.run {
+                    LogUtils.e("mAirLiveBean = $it")
+                    updateAirLive(it)
+                }
+            })
         }
+    }
+
+    private fun updateAirLive(airLiveBean: AirLiveBean) {
+        tvAQI.text = airLiveBean.AQI
+        val indicatorValue = airLiveBean.AQI.toInt()
+        LogUtils.e("indicatorValue = $indicatorValue")
+        indicatorAQI.setIndicatorValue(indicatorValue)
+        tvAdvice.text = "首要污染物：" + airLiveBean.primary
     }
 
     private fun updateSevenDayAndLifeUI(sevenDay: SevenDay) {

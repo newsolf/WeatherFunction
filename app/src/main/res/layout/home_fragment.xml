@@ -85,41 +85,41 @@
             android:elevation="3dp">
 
             <com.newolf.weatherfunction.app.widget.TitleView
-                android:id="@+id/aqi_title"
+                android:id="@+id/titleAqi"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 titleView:titleViewText="@string/title_aqi_module" />
 
             <TextView
-                android:id="@+id/tv_aqi"
+                android:id="@+id/tvAQI"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/aqi_title"
+                android:layout_below="@id/titleAqi"
                 android:layout_marginTop="8dp"
                 android:includeFontPadding="false"
-                android:textSize="46sp"
+                android:textSize="@dimen/textSize_46"
                 tools:text="29" />
 
             <TextView
-                android:id="@+id/tv_quality"
+                android:id="@+id/tvQuality"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/tv_aqi"
+                android:layout_alignBaseline="@id/tvAQI"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_toEndOf="@id/tv_aqi"
-                android:layout_toRightOf="@id/tv_aqi"
+                android:layout_toEndOf="@id/tvAQI"
+                android:layout_toRightOf="@id/tvAQI"
                 android:includeFontPadding="false"
-                android:textSize="@dimen/textSize_12"
+                android:textSize="@dimen/textSize_46"
                 tools:text="优" />
 
-            <com.newolf.weatherfunction.app.widget.IndicatorView
-                android:id="@+id/indicator_view_aqi"
+            <com.newolf.weatherfunction.app.widget.IndicatorViewJava
+                android:id="@+id/indicatorAQI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_aqi"
-                android:layout_alignStart="@id/tv_aqi"
-                android:layout_alignLeft="@id/tv_aqi"
+                android:layout_below="@id/tvAQI"
+                android:layout_alignStart="@id/tvAQI"
+                android:layout_alignLeft="@id/tvAQI"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="20dp"
                 indicatorView:indicatorValue="0"
@@ -128,12 +128,12 @@
                 indicatorView:textSize="8sp" />
 
             <TextView
-                android:id="@+id/tv_advice"
+                android:id="@+id/tvAdvice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/indicator_view_aqi"
-                android:layout_alignStart="@id/tv_aqi"
-                android:layout_alignLeft="@id/tv_aqi"
+                android:layout_below="@+id/indicatorAQI"
+                android:layout_alignStart="@id/tvAQI"
+                android:layout_alignLeft="@id/tvAQI"
                 tools:text="气象条件不利于空气污染物稀释、扩散和清除，请尽量避免在室外长时间活动。" />
 
             <TextView

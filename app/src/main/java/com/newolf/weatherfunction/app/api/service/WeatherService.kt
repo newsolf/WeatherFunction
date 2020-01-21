@@ -1,12 +1,12 @@
 package com.newolf.weatherfunction.app.api.service
 
 import com.newolf.weatherfunction.app.api.BaseResponse
+import com.newolf.weatherfunction.model.AirLiveBean
 import com.newolf.weatherfunction.model.CityCodeBean
 import com.newolf.weatherfunction.model.DetailBean
 import com.newolf.weatherfunction.model.SevenDay
 import retrofit2.http.GET
 import retrofit2.http.Path
-import rx.Observable
 
 
 /**
@@ -61,7 +61,7 @@ public interface WeatherService {
      */
 
     @GET("/v2/cityairlive/YMFYB256AGFUZZE0ODQ3MZM1MZE2NTU=/{cityId}")
-    fun getAirLive(@Path("cityId") cityId: String): Observable<String>
+    suspend fun getAirLive(@Path("cityId") cityId: String): BaseResponse<AirLiveBean>
 
     /**
      *
