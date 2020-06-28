@@ -15,6 +15,7 @@ import com.newolf.weatherfunction.BuildConfig
 import com.newolf.weatherfunction.R
 import com.newolf.weatherfunction.app.api.ApiService
 import com.newolf.weatherfunction.app.service.LocationService
+import com.newolf.weatherfunction.app.utils.LocalUtils
 import com.newolf.weatherfunction.app.utils.ResUtils
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
@@ -51,7 +52,7 @@ class App : Application() {
     private fun initUtils(app: App) {
         Utils.init(app)
         LogUtils.getConfig().setLogSwitch(BuildConfig.DEBUG)
-        ResUtils.init(app)
+        LocalUtils.init(app)
         ToastUtils.setBgColor(ResUtils.getColor(R.color.colorAccent))
     }
 

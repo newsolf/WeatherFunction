@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.newolf.weatherfunction.app.application.App
 import com.newolf.weatherfunction.app.base.BaseVMActivity
 import com.newolf.weatherfunction.app.utils.ResUtils
+import com.newolf.weatherfunction.app.utils.WeatherResUtils
 import com.newolf.weatherfunction.home.DrawerMenuFragment
 import com.newolf.weatherfunction.home.HomeFragment
 import com.newolf.weatherfunction.model.DetailBean
@@ -75,6 +76,7 @@ class MainActivity : BaseVMActivity<TodayWeatherViewModel>() {
     private fun updateTodayWeatherUi(detailBean: DetailBean) {
         refreshLayout.finishRefresh()
         tvWeather.text = detailBean.phenomena
+        ivWeatherIcon.setImageResource(WeatherResUtils.getWeatherRes(detailBean.phenomena))
         tvTemp.text = detailBean.temperature
         tvPublishTime.text = detailBean.updatetime
         homeFragment.updateTodayDetail(detailBean)

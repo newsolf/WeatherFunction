@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: __local_aars__:/Users/baidu/AndroidStudioProjects/WeatherFunction/app/libs/BaiduTraceSDK_v3_1_2.jar:unspecified@jar">
+  <library name="Gradle: ./app/libs/BaiduTraceSDK_v3_1_2.jar">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/app/libs/BaiduTraceSDK_v3_1_2.jar!/" />
     </CLASSES>

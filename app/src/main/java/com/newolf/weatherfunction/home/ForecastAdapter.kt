@@ -5,6 +5,8 @@ import com.blankj.utilcode.util.TimeUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.newolf.weatherfunction.R
+import com.newolf.weatherfunction.app.utils.ResUtils
+import com.newolf.weatherfunction.app.utils.WeatherResUtils
 import com.newolf.weatherfunction.model.Forecast
 
 /**
@@ -41,7 +43,8 @@ class ForecastAdapter(data: MutableList<Forecast>?) :
                 "$it 转 $condDay"
             }
             helper?.setText(R.id.tvWeather, weather)
-            helper?.setImageResource(R.id.ivWeatherIcon, R.mipmap.ic_launcher)
+            helper?.setImageResource(R.id.ivWeatherIcon, WeatherResUtils.getWeatherRes(weather))
+            helper?.setBackgroundColor(R.id.ivWeatherIcon,ResUtils.getColor(R.color.colorAccent) )
         }
     }
 }

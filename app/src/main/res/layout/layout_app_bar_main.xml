@@ -83,7 +83,7 @@
                         tools:text="小雨" />
 
                     <ImageView
-                        android:id="@+id/IvWeatherIcon"
+                        android:id="@+id/ivWeatherIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_above="@id/tvTemp"
