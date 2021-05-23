@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/refreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_999999"
+    android:orientation="vertical"
+    android:windowSoftInputMode="adjustResize">
+
+
+    <com.newolf.weatherfunction.app.widget.ProgressWebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="1dp" />
+
+
+    <include
+        android:id="@+id/vs_net_error"
+        layout="@layout/view_net_error"
+        android:visibility="gone" />
+
+
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

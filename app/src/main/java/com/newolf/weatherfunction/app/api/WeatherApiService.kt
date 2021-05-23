@@ -34,9 +34,9 @@ object WeatherApiService : BaseRetrofitClient() {
 //            .cookieJar(cookieJar)
             .addInterceptor { chain ->
                 var request = chain.request()
-                if (!NetworkUtils.isAvailableByPing()) {
+                if (!NetworkUtils.isConnected()) {
                     request = request.newBuilder()
-                        .cacheControl(CacheControl.FORCE_CACHE)
+                        .cacheControl(CacheControl.FORCE_NETWORK)
                         .build()
                 }
                 val response = chain.proceed(request)

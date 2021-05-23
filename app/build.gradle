@@ -98,8 +98,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0-alpha10'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
-
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.google.code.gson:gson:2.6.2'
 
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 //    implementation 'com.squareup.retrofit2:adapter-rxjava:2.6.0'
@@ -115,6 +116,9 @@ dependencies {
 //    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.21'
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0"
+
+    // ProgressWebView
+//    implementation  'com.github.lany192:ProgressWebView:1.0.0'
 
 }
 

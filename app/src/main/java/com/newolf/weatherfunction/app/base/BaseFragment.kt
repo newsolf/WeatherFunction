@@ -17,8 +17,9 @@ import androidx.fragment.app.Fragment
  * 历史:<br/>
  * ================================================
  */
-abstract class BaseFragment:Fragment(),IBaseView {
+abstract class BaseFragment : Fragment(), IBaseView {
     lateinit var mContext: Context
+    lateinit var mRootView: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +27,8 @@ abstract class BaseFragment:Fragment(),IBaseView {
         savedInstanceState: Bundle?
     ): View? {
         mContext = inflater.context
-        return inflater.inflate(bindLayout(),container,false)
+        mRootView = inflater.inflate(bindLayout(), container, false)
+        return mRootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

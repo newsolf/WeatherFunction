@@ -25,4 +25,6 @@
     <color name="indicator_color_5">#CA004A</color>
     <color name="indicator_color_6">#7D0000</color>
     <color name="indicator_text_color">#FFFFFF</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_999999">#999999</color>
 </resources>

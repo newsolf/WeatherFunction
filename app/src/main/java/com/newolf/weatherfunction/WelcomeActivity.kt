@@ -17,7 +17,7 @@ import com.newolf.weatherfunction.model.viewmodel.CityCodeViewModel
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
-    override fun providerVMClass(): Class<CityCodeViewModel>? = CityCodeViewModel::class.java
+    override fun providerVMClass(): Class<CityCodeViewModel> = CityCodeViewModel::class.java
 
     val millisInFuture: Long = 6000
     val countDownInterval: Long = 1000
@@ -212,10 +212,10 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
             return
         }
 
-        if (TextUtils.isEmpty(cityCode)) {
-            ToastUtils.showShort(R.string.please_waite_current_code)
-            return
-        }
+//        if (TextUtils.isEmpty(cityCode)) {
+//            ToastUtils.showShort(R.string.please_waite_current_code)
+//            return
+//        }
 
 
         Navigate.startMainActivity(this)

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.newolf.weatherfunction.app.widget.CustomToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
+    style="@style/Toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
+    android:contentInsetStart="0dp"
+    android:contentInsetLeft="0dp"
+    android:fitsSystemWindows="true"
+    android:minHeight="?attr/actionBarSize"
+    android:navigationIcon="@mipmap/icon_back"
+    android:theme="@style/Toolbar"
+    android:title="@null"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+android:visibility="gone"
+    >
+
+
+    <TextView
+        android:id="@+id/lt_main_title_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:gravity="start"
+        android:singleLine="true"
+        tools:text="leftleftleftleft"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/textSize_12"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/lt_main_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:singleLine="true"
+        tools:text="标题"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/textSize_16"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/lt_main_title_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="10dp"
+        android:gravity="center_vertical|end"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/textSize_12" />
+
+</com.newolf.weatherfunction.app.widget.CustomToolbar>
