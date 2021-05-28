@@ -14,7 +14,9 @@ import java.io.EOFException
 import java.nio.charset.Charset
 
 class ResetfulApiInterceptor(val context: Context) : Interceptor {
-    private val UTF8 = Charset.forName("UTF-8")
+    companion object {
+        private val UTF8 = Charset.forName("UTF-8")
+    }
 
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -27,17 +29,17 @@ class ResetfulApiInterceptor(val context: Context) : Interceptor {
             e.printStackTrace()
             throw e
         }
-        val responseBody = response.body()
+        val responseBody = response.body
         val contentLength = responseBody?.contentLength()
         var source = responseBody?.source()
         source?.request(java.lang.Long.MAX_VALUE) // Buffer the entire body.
         var buffer = source?.buffer()
 
-        val headers = response.headers()
+        val headers = response.headers
 
         var gzippedLength: Long? = null
         if ("gzip".equals(headers.get("Content-Encoding"), ignoreCase = true)) {
-            gzippedLength = buffer?.size()
+            gzippedLength = buffer?.size
             var gzippedResponseBody: GzipSource? = null
             try {
                 gzippedResponseBody = GzipSource(buffer!!.clone())
@@ -79,16 +81,18 @@ class ResetfulApiInterceptor(val context: Context) : Interceptor {
 
                 val clazz = Class.forName("okio.RealBufferedSource")
                 val constructor = clazz.getDeclaredConstructor(Source::class.java)
-                val source1 = Okio.source(ByteArrayInputStream(stringCharArray))
+                val source1 = ByteArrayInputStream(stringCharArray).source()
                 constructor.isAccessible = true
                 val instance = constructor.newInstance(source1)
                 source = instance as BufferedSource?
                 response = builder.body(
-                    RealResponseBody(
-                        responseBody?.contentType().toString(),
-                        stringCharArray.size.toLong(),
-                        source
-                    )
+                    source?.let {
+                        RealResponseBody(
+                            responseBody?.contentType().toString(),
+                            stringCharArray.size.toLong(),
+                            it
+                        )
+                    }
                 ).build()
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -107,7 +111,7 @@ class ResetfulApiInterceptor(val context: Context) : Interceptor {
     fun isPlaintext(buffer: Buffer): Boolean {
         try {
             val prefix = Buffer()
-            val byteCount = if (buffer.size() < 64) buffer.size() else 64
+            val byteCount = if (buffer.size < 64) buffer.size else 64
             buffer.copyTo(prefix, 0, byteCount)
             for (i in 0..15) {
                 if (prefix.exhausted()) {

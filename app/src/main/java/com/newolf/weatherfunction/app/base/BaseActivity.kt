@@ -10,6 +10,7 @@ import android.view.WindowManager
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.BarUtils
+import com.umeng.message.PushAgent
 
 /**
  * ================================================
@@ -28,6 +29,7 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBaseView(bindLayout())
+        PushAgent.getInstance(application).onAppStart();
         mContext = this
         getExtras()
         initView()

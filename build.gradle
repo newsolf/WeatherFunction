@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.41'
+    ext.kotlin_version = '1.4.31'
     ext {
         configs = [kotlin_version   : kotlin_version,
                    applicationId    : 'com.newolf.weatherfunction',
@@ -15,15 +15,19 @@ buildscript {
                    appUrl           : 'http://service.envicloud.cn:8082',
                    buglyIdDebug     : 'be1962ab98', //debug
                    buglyIdRelease   : 'ffa2fe2d07',
+                   statsKey         : '60b09aa8dd01c71b57c940cb',
+                   channel          : 'wolf',
+                   messageSecret    : 'a9519665895659131ae307f769b505e1',
 
 
         ]
 
         def supportLibraryVersion = '27.1.0'
-        def androidX = '1.1.0'
-        def constraintLayoutVersion = '1.1.3'
+        def androidX = '1.5.0'
+        def appcompat = '1.3.0'
+        def constraintLayoutVersion = '2.0.4'
 
-        deps = [appcompatX      : "androidx.appcompat:appcompat:$androidX",
+        deps = [appcompatX      : "androidx.appcompat:appcompat:$appcompat",
                 coreX           : "androidx.core:core-ktx:$androidX",
                 gridlayoutV7    : "com.android.support:gridlayout-v7:$supportLibraryVersion",
                 supportV4       : "com.android.support:support-v4:$supportLibraryVersion",
@@ -38,11 +42,11 @@ buildscript {
     repositories {
         maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         google()
-        jcenter()
         maven { url "https://jitpack.io" }
+        maven { url 'https://repo1.maven.org/maven2/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:4.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.tencent.bugly:tinker-support:latest.release"
         // NOTE: Do not place your application dependencies here; they belong
@@ -54,8 +58,8 @@ allprojects {
     repositories {
         maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         google()
-        jcenter()
         maven { url "https://jitpack.io" }
+        maven { url 'https://repo1.maven.org/maven2/' }
     }
 }
 

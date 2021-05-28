@@ -13,6 +13,8 @@ import com.newolf.weatherfunction.app.base.BaseVMActivity
 import com.newolf.weatherfunction.app.constant.Constants
 import com.newolf.weatherfunction.app.helper.DialogHelper
 import com.newolf.weatherfunction.app.service.LocationService
+import com.newolf.weatherfunction.app.utils.StatsUtils
+import com.newolf.weatherfunction.app.utils.state.StatsConstant
 import com.newolf.weatherfunction.model.viewmodel.CityCodeViewModel
 import kotlinx.android.synthetic.main.activity_welcome.*
 
@@ -72,6 +74,8 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
             override fun onReceiveLocation(location: BDLocation?) {
                 currentCity = location?.city.toString()
 
+
+
                 if(TextUtils.isEmpty(currentCity)){
                     ToastUtils.showShort("正在获取当前城市为，请等待...")
                     LogUtils.e("未获取到当前城市")
@@ -81,6 +85,13 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
                 LogUtils.e("获取到当前城市为： $currentCity")
                 val longitude = location?.longitude
                 val latitude = location?.latitude
+                val currentLocation = "${location?.locTypeDescription} ${location?.address?.address} ${location?.locationDescribe} loca:$longitude,$latitude"
+                val currentLocationStats = "${location?.locTypeDescription} loca:$longitude,$latitude"
+                LogUtils.e("currentLocation = $currentLocation")
+                val obtainMap = StatsUtils.obtainMap()
+                obtainMap[StatsConstant.CURRENT_LOCATION] = currentLocationStats
+                StatsUtils.onEvent(StatsConstant.CURRENT_LOCATION, obtainMap)
+
                 LogUtils.e("longitude = $longitude ,latitude =  $latitude")
                 ToastUtils.showShort("获取到当前城市为： $currentCity")
                 if (longitude != null && latitude != null && longitude + latitude != 0.toDouble()) {

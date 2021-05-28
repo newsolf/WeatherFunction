@@ -19,12 +19,12 @@ import com.baidu.location.LocationClientOption.LocationMode;
  */
 public class LocationService {
     private LocationClient client = null;
-    private LocationClientOption mOption, DIYoption;
+    private LocationClientOption mOption, DiyOption;
     private final Object objLock = new Object();
 
     /***
      *
-     * @param locationContext
+     * @param locationContext Context
      */
     public LocationService(Context locationContext) {
         synchronized (objLock) {
@@ -37,8 +37,8 @@ public class LocationService {
 
     /***
      *
-     * @param listener
-     * @return
+     * @param listener BDAbstractLocationListener
+     * @return boolean
      */
 
     public boolean registerListener(BDAbstractLocationListener listener) {
@@ -58,7 +58,7 @@ public class LocationService {
 
     /***
      *
-     * @param option
+     * @param option LocationClientOption
      * @return isSuccessSetOption
      */
     public boolean setLocationOption(LocationClientOption option) {
@@ -66,7 +66,7 @@ public class LocationService {
         if (option != null) {
             if (client.isStarted())
                 client.stop();
-            DIYoption = option;
+            DiyOption = option;
             client.setLocOption(option);
         }
         return isSuccess;
@@ -102,10 +102,10 @@ public class LocationService {
      * @return DIYOption 自定义Option设置
      */
     public LocationClientOption getOption() {
-        if (DIYoption == null) {
-            DIYoption = new LocationClientOption();
+        if (DiyOption == null) {
+            DiyOption = new LocationClientOption();
         }
-        return DIYoption;
+        return DiyOption;
     }
 
     public void start() {

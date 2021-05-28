@@ -16,7 +16,9 @@ import com.newolf.weatherfunction.R
 import com.newolf.weatherfunction.app.api.ApiService
 import com.newolf.weatherfunction.app.service.LocationService
 import com.newolf.weatherfunction.app.utils.LocalUtils
+import com.newolf.weatherfunction.app.utils.PushUtils
 import com.newolf.weatherfunction.app.utils.ResUtils
+import com.newolf.weatherfunction.app.utils.StatsUtils
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import kotlin.properties.Delegates
@@ -37,6 +39,7 @@ class App : Application() {
         lateinit var cityName: String
         var cityCode: String = ""
         var CONTEXT: Context by Delegates.notNull()
+        lateinit var name: String
     }
     lateinit var  mLocationService : LocationService
     override fun onCreate() {
@@ -47,6 +50,8 @@ class App : Application() {
         initLocation(this)
         initTrace(this)
         ApiService.init(this)
+        initPush(this)
+        initStats(this)
     }
 
     private fun initUtils(app: App) {
@@ -68,8 +73,8 @@ class App : Application() {
         LogUtils.e(DeviceUtils.getMacAddress())
         LogUtils.e(DeviceUtils.getManufacturer())
         LogUtils.e(DeviceUtils.getModel())
-        val name =
-            DeviceUtils.getManufacturer() + DeviceUtils.getModel() + DeviceUtils.getAndroidID()
+        name =
+            "${DeviceUtils.getManufacturer()}_${DeviceUtils.getModel()}_${DeviceUtils.getAndroidID()}"
         LogUtils.e("name = $name")
         val trace = Trace(216163, name, false)
         val traceClient = LBSTraceClient(app)
@@ -112,7 +117,13 @@ class App : Application() {
         SDKInitializer.initialize(app)
     }
 
+    private fun initPush(app: App) {
+        PushUtils.initPush(app)
+    }
 
+    private fun initStats(app: App) {
+        StatsUtils.initStats(app)
+    }
 
 
 
