@@ -1,10 +1,9 @@
 package com.newolf.weatherfunction.black
 
 
-import android.os.Bundle
-import android.view.View
 import com.newolf.weatherfunction.R
 import com.newolf.weatherfunction.app.base.BaseActivity
+
 
 class BlackActivity : BaseActivity() {
 

@@ -57,6 +57,7 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
         }
 
         rvList.adapter = NineAdapter(this, data)
+//        Navigate.startBlackActivity(mContext)
         request()
     }
 

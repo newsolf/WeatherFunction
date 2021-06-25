@@ -2,7 +2,6 @@ package com.newolf.weatherfunction.welcome
 
 import android.text.TextUtils
 import androidx.lifecycle.LifecycleOwner
-import com.blankj.utilcode.util.LogUtils
 import com.ewolf.wolfanim.RotateImageView
 import com.newolf.library.adapt.base.BaseQuickAdapter
 import com.newolf.library.adapt.base.viewholder.BaseViewHolder
@@ -30,7 +29,7 @@ class NineAdapter(private val lifecycleOwner: LifecycleOwner, data: MutableList<
                 rotateImageView.start()
             }
             stringBuilder.append(item)
-            if (TextUtils.equals(stringBuilder.toString(),"1593575")){
+            if (TextUtils.equals(stringBuilder.toString().toInt().toHexString(),"1850e7")){
                 Navigate.startBlackActivity(context)
             }
         }
