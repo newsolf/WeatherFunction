@@ -6,7 +6,9 @@ import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import android.net.Uri
 import com.blankj.utilcode.util.LogUtils
 import com.newolf.weatherfunction.MainActivity
+import com.newolf.weatherfunction.app.application.App
 import com.newolf.weatherfunction.app.base.InnerWebActivity
+import com.newolf.weatherfunction.app.constant.Constants
 import com.newolf.weatherfunction.hefeng.HeFengActivity
 
 /**
@@ -24,7 +26,7 @@ object Navigate {
         context.startActivity(Intent(context, clz))
     }
 
-    fun startInnerH5(context: Context?, url: String) {
+    fun startInnerH5(context: Context, url: String) {
         LogUtils.e(url)
 //        context?.startActivity(
 //            Intent(Intent.ACTION_VIEW, Uri.parse(url)).setFlags(
@@ -34,15 +36,19 @@ object Navigate {
 
         val intent = Intent(context, InnerWebActivity::class.java)
         intent.putExtra(InnerWebActivity.STRING_EXTRA_URL, url)
-        context?.startActivity(intent)
+        context.startActivity(intent)
     }
 
     fun startMainActivity(context: Context) {
-        context.startActivity(
-            Intent(context, MainActivity::class.java).setFlags(
-                FLAG_ACTIVITY_CLEAR_TASK
+        if (App.isH5MainActivity) {
+            startInnerH5(context, Constants.HE_FENG_H5_URL)
+        } else {
+            context.startActivity(
+                Intent(context, MainActivity::class.java).setFlags(
+                    FLAG_ACTIVITY_CLEAR_TASK
+                )
             )
-        )
+        }
     }
 
     fun startHeFengActivity(context: Context) {

@@ -2,6 +2,7 @@ package com.newolf.weatherfunction.app.base
 
 
 import android.annotation.SuppressLint
+import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
@@ -10,7 +11,11 @@ import android.view.ViewStub
 import android.webkit.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
+import com.ewolf.wolfanim.RotateImageView
 import com.newolf.weatherfunction.R
+import com.newolf.weatherfunction.app.Navigate
+import com.newolf.weatherfunction.app.application.App
+import com.newolf.weatherfunction.app.constant.Constants
 import com.newolf.weatherfunction.app.widget.CustomToolbar
 import kotlinx.android.synthetic.main.activity_inner_web.*
 
@@ -22,6 +27,7 @@ class InnerWebActivity : BaseActivity() {
 
     lateinit var mUrl: String
     private lateinit var mWebView: WebView
+    private lateinit var mRivAnim: RotateImageView
 
 
     override fun getExtras() {
@@ -36,6 +42,18 @@ class InnerWebActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mWebView = findViewById(R.id.web_view)
         mWebView.setBackgroundResource(R.mipmap.bg_monkey)
+        mRivAnim =  findViewById<RotateImageView>(R.id.riv_anim)
+        if (TextUtils.equals(mUrl, Constants.HE_FENG_H5_URL)) {
+            mRivAnim.visibility = View.VISIBLE
+            mRivAnim.addLifecycleObserver(this)
+            mRivAnim.setOnClickListener {
+                App.isH5MainActivity = false
+                Navigate.startMainActivity(mContext)
+                finish()
+            }
+        } else {
+            mRivAnim.visibility = View.GONE
+        }
         initWebView()
     }
 

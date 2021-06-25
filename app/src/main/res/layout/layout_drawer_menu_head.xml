@@ -16,28 +16,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="wenzi" />
+        android:text="无论天气如何，希望你每天都开心^v^" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+    <com.ewolf.wolfanim.RotateImageView
+        android:id="@+id/riv_anim"
+        android:layout_width="99px"
+        android:layout_height="99px"
         android:layout_above="@id/textView"
         android:contentDescription="@string/content_description_default"
-        android:src="@mipmap/ic_launcher" />
+         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/imageView"
+        android:layout_alignBottom="@id/riv_anim"
         android:layout_marginLeft="6dp"
-        android:layout_toRightOf="@id/imageView"
+        android:layout_toRightOf="@id/riv_anim"
         android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/add_city_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
