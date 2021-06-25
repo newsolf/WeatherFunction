@@ -1,6 +1,12 @@
 package com.newolf.weatherfunction
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.location.LocationManager
 import android.os.CountDownTimer
+import android.provider.Settings
 import android.text.TextUtils
 import androidx.lifecycle.Observer
 import com.baidu.location.BDAbstractLocationListener
@@ -74,9 +80,7 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
             override fun onReceiveLocation(location: BDLocation?) {
                 currentCity = location?.city.toString()
 
-
-
-                if(TextUtils.isEmpty(currentCity)){
+                if (TextUtils.isEmpty(currentCity)) {
                     ToastUtils.showShort("正在获取当前城市为，请等待...")
                     LogUtils.e("未获取到当前城市")
                     return
@@ -97,10 +101,7 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
                 if (longitude != null && latitude != null && longitude + latitude != 0.toDouble()) {
                     stopLocation()
 //                    requestCityCode(longitude, latitude)
-
-                      requestCityCode(longitude, latitude)
-
-
+                    requestCityCode(longitude, latitude)
                 }
             }
         }
@@ -111,11 +112,11 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
         mLocationService.start()
     }
 
-    private  fun requestCityCode(longitude: Double, latitude: Double) {
-        if (NetworkUtils.isConnected()){
+    private fun requestCityCode(longitude: Double, latitude: Double) {
+        if (NetworkUtils.isConnected()) {
 //            根据接口获取cityCode
 
-            if(TextUtils.isEmpty(currentCity)){
+            if (TextUtils.isEmpty(currentCity)) {
                 ToastUtils.showShort("获取城市错误")
                 return
             }
@@ -130,14 +131,13 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
             mViewModel.getCityCodeByCityName(currentCity)
 
 
-
         } else {
 //            根据本地json获取
             LogUtils.e("no net ")
-            cityCode =  SPUtils.getInstance().getString(Constants.SP_STRING_CITY_CODE,"101010100")
+            cityCode = SPUtils.getInstance().getString(Constants.SP_STRING_CITY_CODE, "101010100")
             App.cityCode = cityCode.toString()
 
-            currentCity =  SPUtils.getInstance().getString(Constants.SP_STRING_CITY_NAME, "北京")
+            currentCity = SPUtils.getInstance().getString(Constants.SP_STRING_CITY_NAME, "北京")
             App.cityName = currentCity
 
 
@@ -167,7 +167,6 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
     }
 
 
-
     override fun onStop() {
         super.onStop()
         stopLocation()
@@ -182,28 +181,48 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
 
     private fun request() {
         PermissionUtils.permission(PermissionConstants.LOCATION, PermissionConstants.STORAGE)
-            .rationale { shouldRequest -> DialogHelper.showRationaleDialog(shouldRequest) }
-            .rationale { shouldRequest -> ToastUtils.showLong(shouldRequest.toString()) }
-            .callback(object : PermissionUtils.FullCallback {
-                override fun onGranted(permissionsGranted: MutableList<String>?) {
-                    LogUtils.e("permissionsGranted = $permissionsGranted")
+                .rationale { shouldRequest -> DialogHelper.showRationaleDialog(shouldRequest) }
+                .rationale { shouldRequest -> ToastUtils.showLong(shouldRequest.toString()) }
+                .callback(object : PermissionUtils.FullCallback {
+                    override fun onGranted(permissionsGranted: MutableList<String>?) {
+                        LogUtils.e("permissionsGranted = $permissionsGranted")
 //                    nextToHome()
-                    hasAllPermission = true
-                    startLocation()
-                }
+                        hasAllPermission = true
+                        checkGps()
 
-                override fun onDenied(
-                    permissionsDeniedForever: MutableList<String>?,
-                    permissionsDenied: MutableList<String>?
-                ) {
-                    if (permissionsDeniedForever?.size == 0) {
-                        DialogHelper.showOpenAppSettingDialog()
-                        hasAllPermission = false
-//                        ToastUtils.showShort("没有获得权限")
                     }
-                    LogUtils.d(permissionsDeniedForever, permissionsDenied)
-                }
-            }).request()
+
+                    override fun onDenied(
+                            permissionsDeniedForever: MutableList<String>?,
+                            permissionsDenied: MutableList<String>?
+                    ) {
+                        if (permissionsDeniedForever?.size == 0) {
+                            DialogHelper.showOpenAppSettingDialog()
+                            hasAllPermission = false
+//                        ToastUtils.showShort("没有获得权限")
+                        }
+                        LogUtils.d(permissionsDeniedForever, permissionsDenied)
+                    }
+                }).request()
+    }
+
+    private fun checkGps() {
+        val alm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (alm.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER)) {
+            startLocation()
+        } else {
+            showNeedGpsDialog()
+        }
+    }
+
+    private fun showNeedGpsDialog() {
+        val alertBuild = AlertDialog.Builder(mContext)
+        alertBuild.setTitle(getString(R.string.need_gps_title)).setMessage(getString(R.string.need_gps_msg)).setNegativeButton(getString(R.string.need_gps_negative)) { dialog, _ ->
+            dialog.dismiss()
+            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            mContext.startActivity(intent)
+        }
+        alertBuild.create().show()
     }
 
     override fun onRestart() {

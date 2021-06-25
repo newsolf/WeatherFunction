@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">婕婕天气</string>
+    <string name="app_name">Wolf Weather</string>
     <string name="jump">Jump %1$ds</string>
     <string name="start_location">StartLocation</string>
     <string name="stop_location">StopLocation</string>
@@ -33,4 +33,7 @@
     <string name="life_key_trav">Trav</string>
     <string name="life_key_uv">UV</string>
     <string name="life_key_cw">CW</string>
+    <string name="need_gps_title">GPS permission required</string>
+    <string name="need_gps_msg">The weather forecast needs your current location to determine the city location information before it can provide weather information. Please turn on GPS</string>
+    <string name="need_gps_negative">Go to turn on GPS</string>
 </resources>

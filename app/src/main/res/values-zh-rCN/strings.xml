@@ -34,4 +34,7 @@
     <string name="life_key_trav">Trav</string>
     <string name="life_key_uv">UV</string>
     <string name="life_key_cw">CW</string>
+    <string name="need_gps_title">需要GPS权限</string>
+    <string name="need_gps_msg">天气预报需要您当前的位置来确定城市位置信息，才可以提供天气信息，请打开GPS</string>
+    <string name="need_gps_negative">前往打开GPS</string>
 </resources>
