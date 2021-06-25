@@ -30,22 +30,19 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 以下为需要的基本权限，需要自行添加至您的AndroidManifest文件中 start -->
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- 以下为需要的基本权限，需要自行添加至您的AndroidManifest文件中 start-->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED"/>
-    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED"/>
-    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_INSTALL"/>
-    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED"/>
-    <uses-permission android:name="android.permission.GET_TASKS"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <!-- 以下为需要的基本权限，需要自行添加至您的AndroidManifest文件中 end-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_INSTALL" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".app.application.App"
@@ -57,7 +54,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".app.base.InnerWebActivity"></activity>
+        <activity android:name=".black.BlackActivity"/>
+        <activity android:name=".app.base.InnerWebActivity" />
         <activity android:name=".hefeng.HeFengActivity" />
         <activity android:name="com.qweather.plugin.view.SdkWebViewActivity" />
         <activity android:name=".app.project.LocationActivity" />
@@ -100,9 +98,7 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" />
-
-        <!-- 以下为基本配置信息，需要自行添加至您的AndroidManifest文件中 start-->
+            android:process=":remote" /> <!-- 以下为基本配置信息，需要自行添加至您的AndroidManifest文件中 start -->
         <service
             android:name="com.taobao.accs.ChannelService"
             android:exported="true"
@@ -114,7 +110,6 @@
                 <action android:name="com.taobao.accs.intent.action.ELECTION" />
             </intent-filter>
         </service>
-
         <service
             android:name="com.taobao.accs.data.MsgDistributeService"
             android:exported="true">
@@ -134,13 +129,13 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
                 <data android:scheme="package" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name="com.taobao.accs.ServiceReceiver"
             android:process=":channel">
@@ -156,11 +151,9 @@
             android:name="com.taobao.accs.internal.AccsJobService"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:process=":channel" />
-
         <service
             android:name="com.taobao.accs.ChannelService$KernelService"
             android:process=":channel" />
-
         <service
             android:name="org.android.agoo.accs.AgooService"
             android:exported="true">
@@ -168,7 +161,6 @@
                 <action android:name="com.taobao.accs.intent.action.RECEIVE" />
             </intent-filter>
         </service>
-
         <service
             android:name="com.umeng.message.UmengIntentService"
             android:exported="true"
@@ -177,7 +169,6 @@
                 <action android:name="org.agoo.android.intent.action.RECEIVE" />
             </intent-filter>
         </service>
-
         <service
             android:name="com.umeng.message.XiaomiIntentService"
             android:exported="true"
@@ -196,6 +187,7 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
@@ -233,7 +225,6 @@
                 <action android:name="com.umeng.message.message.sendmessage.action" />
             </intent-filter>
         </service>
-
         <service
             android:name="com.umeng.message.UmengDownloadResourceService"
             android:exported="false"
@@ -245,7 +236,6 @@
             android:exported="false">
             <grant-uri-permission android:pathPattern=".*" />
         </provider>
-        <!-- 以下为基本配置信息，需要自行添加至您的AndroidManifest文件中 end-->
     </application>
 
 </manifest>

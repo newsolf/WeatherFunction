@@ -9,6 +9,8 @@ import android.os.CountDownTimer
 import android.provider.Settings
 import android.text.TextUtils
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.baidu.location.BDAbstractLocationListener
 import com.baidu.location.BDLocation
 import com.blankj.utilcode.constant.PermissionConstants
@@ -22,7 +24,9 @@ import com.newolf.weatherfunction.app.service.LocationService
 import com.newolf.weatherfunction.app.utils.StatsUtils
 import com.newolf.weatherfunction.app.utils.state.StatsConstant
 import com.newolf.weatherfunction.model.viewmodel.CityCodeViewModel
+import com.newolf.weatherfunction.welcome.NineAdapter
 import kotlinx.android.synthetic.main.activity_welcome.*
+import java.util.*
 
 class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
     override fun providerVMClass(): Class<CityCodeViewModel> = CityCodeViewModel::class.java
@@ -44,6 +48,15 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
     override fun initView() {
         val app = application as App
         mLocationService = app.mLocationService
+        val rvList = findViewById<RecyclerView>(R.id.rv_list)
+        rvList.layoutManager = GridLayoutManager(mContext, 3)
+        val data = ArrayList<String>()
+
+        for (index in 1..9){
+            data.add("$index")
+        }
+
+        rvList.adapter = NineAdapter(this, data)
         request()
     }
 

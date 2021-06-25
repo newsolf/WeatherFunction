@@ -9,6 +9,7 @@ import com.newolf.weatherfunction.MainActivity
 import com.newolf.weatherfunction.app.application.App
 import com.newolf.weatherfunction.app.base.InnerWebActivity
 import com.newolf.weatherfunction.app.constant.Constants
+import com.newolf.weatherfunction.black.BlackActivity
 import com.newolf.weatherfunction.hefeng.HeFengActivity
 
 /**
@@ -53,6 +54,10 @@ object Navigate {
 
     fun startHeFengActivity(context: Context) {
         context.startActivity(Intent(context, HeFengActivity::class.java))
+    }
+
+    fun startBlackActivity(context: Context) {
+        context.startActivity(Intent(context, BlackActivity::class.java))
     }
 
 }
