@@ -57,7 +57,7 @@
         <activity android:name=".black.BlackActivity"/>
         <activity android:name=".app.base.InnerWebActivity" />
         <activity android:name=".hefeng.HeFengActivity" />
-        <activity android:name="com.qweather.plugin.view.SdkWebViewActivity" />
+
         <activity android:name=".app.project.LocationActivity" />
 
         <meta-data
@@ -236,6 +236,9 @@
             android:exported="false">
             <grant-uri-permission android:pathPattern=".*" />
         </provider>
+
+        <service android:name="com.newolf.maillib.MailIntentService"
+            tools:ignore="MissingClass" />
     </application>
 
 </manifest>

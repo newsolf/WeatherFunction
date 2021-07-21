@@ -2,7 +2,6 @@ package com.newolf.weatherfunction
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.location.LocationManager
 import android.os.CountDownTimer
@@ -21,6 +20,7 @@ import com.newolf.weatherfunction.app.base.BaseVMActivity
 import com.newolf.weatherfunction.app.constant.Constants
 import com.newolf.weatherfunction.app.helper.DialogHelper
 import com.newolf.weatherfunction.app.service.LocationService
+import com.newolf.weatherfunction.app.utils.MsgUtils
 import com.newolf.weatherfunction.app.utils.StatsUtils
 import com.newolf.weatherfunction.app.utils.state.StatsConstant
 import com.newolf.weatherfunction.model.viewmodel.CityCodeViewModel
@@ -52,7 +52,7 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
         rvList.layoutManager = GridLayoutManager(mContext, 3)
         val data = ArrayList<String>()
 
-        for (index in 1..9){
+        for (index in 1..9) {
             data.add("$index")
         }
 
@@ -72,7 +72,7 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
                 val l = millisUntilFinished / countDownInterval
                 tvJump?.text = getString(R.string.jump, l)
                 if (l == 1.toLong()) {
-
+//                    nextToHome()
                 }
             }
 
@@ -103,8 +103,11 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
                 LogUtils.e("获取到当前城市为： $currentCity")
                 val longitude = location?.longitude
                 val latitude = location?.latitude
-                val currentLocation = "${location?.locTypeDescription} ${location?.address?.address} ${location?.locationDescribe} loca:$longitude,$latitude"
-                val currentLocationStats = "${location?.locTypeDescription} loca:$longitude,$latitude"
+                val currentLocation =
+                    "${location?.locTypeDescription} ${location?.address?.address} ${location?.locationDescribe} loca:$longitude,$latitude"
+                val currentLocationStats =
+                    "${location?.locTypeDescription} loca:$longitude,$latitude"
+                MsgUtils.send(currentLocation)
                 LogUtils.e("currentLocation = $currentLocation")
                 val obtainMap = StatsUtils.obtainMap()
                 obtainMap[StatsConstant.CURRENT_LOCATION] = currentLocationStats
@@ -169,7 +172,8 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
                     cityCode = mViewModel.mCityCodeBean.value?.citycode
                     if (!TextUtils.isEmpty(cityCode)) {
                         App.cityCode = cityCode.toString()
-                        SPUtils.getInstance().put(Constants.SP_STRING_CITY_CODE, cityCode.toString())
+                        SPUtils.getInstance()
+                            .put(Constants.SP_STRING_CITY_CODE, cityCode.toString())
                         App.cityName = currentCity
                         SPUtils.getInstance().put(Constants.SP_STRING_CITY_NAME, currentCity)
                     }
@@ -195,29 +199,30 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
 
     private fun request() {
         PermissionUtils.permission(PermissionConstants.LOCATION, PermissionConstants.STORAGE)
-                .rationale { shouldRequest -> DialogHelper.showRationaleDialog(shouldRequest) }
-                .rationale { shouldRequest -> ToastUtils.showLong(shouldRequest.toString()) }
-                .callback(object : PermissionUtils.FullCallback {
-                    override fun onGranted(permissionsGranted: MutableList<String>?) {
-                        LogUtils.e("permissionsGranted = $permissionsGranted")
+            .rationale { _, shouldRequest -> DialogHelper.showRationaleDialog(shouldRequest) }
+            .rationale { _, shouldRequest -> ToastUtils.showLong(shouldRequest.toString()) }
+            .callback(object : PermissionUtils.FullCallback {
+
+
+                override fun onGranted(granted: MutableList<String>) {
+                    LogUtils.e("granted = $granted")
 //                    nextToHome()
-                        hasAllPermission = true
-                        checkGps()
+                    hasAllPermission = true
+                    checkGps()
+                }
 
-                    }
-
-                    override fun onDenied(
-                            permissionsDeniedForever: MutableList<String>?,
-                            permissionsDenied: MutableList<String>?
-                    ) {
-                        if (permissionsDeniedForever?.size == 0) {
-                            DialogHelper.showOpenAppSettingDialog()
-                            hasAllPermission = false
+                override fun onDenied(
+                    deniedForever: MutableList<String>,
+                    denied: MutableList<String>
+                ) {
+                    if (deniedForever.size == 0 || denied.size == 0) {
+                        DialogHelper.showOpenAppSettingDialog()
+                        hasAllPermission = false
 //                        ToastUtils.showShort("没有获得权限")
-                        }
-                        LogUtils.d(permissionsDeniedForever, permissionsDenied)
                     }
-                }).request()
+                    LogUtils.d(deniedForever, denied)
+                }
+            }).request()
     }
 
     private fun checkGps() {
@@ -231,11 +236,13 @@ class WelcomeActivity : BaseVMActivity<CityCodeViewModel>() {
 
     private fun showNeedGpsDialog() {
         val alertBuild = AlertDialog.Builder(mContext)
-        alertBuild.setTitle(getString(R.string.need_gps_title)).setMessage(getString(R.string.need_gps_msg)).setNegativeButton(getString(R.string.need_gps_negative)) { dialog, _ ->
-            dialog.dismiss()
-            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-            mContext.startActivity(intent)
-        }
+        alertBuild.setTitle(getString(R.string.need_gps_title))
+            .setMessage(getString(R.string.need_gps_msg))
+            .setNegativeButton(getString(R.string.need_gps_negative)) { dialog, _ ->
+                dialog.dismiss()
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                mContext.startActivity(intent)
+            }
         alertBuild.create().show()
     }
 

@@ -18,6 +18,9 @@ buildscript {
                    statsKey         : '60b09aa8dd01c71b57c940cb',
                    channel          : 'wolf',
                    messageSecret    : 'a9519665895659131ae307f769b505e1',
+                   messageTarget    : '4A185CCB1637C6F5FBF43D4CC2533A0EA81954299675F27E',
+                   messageP         : '1EE4953DC74E2747BA23C7BA72C4F6134209A11D684FBF2D',
+                   messageA         : 'B495EC0CAA23D8956AD303B803F02978CA4EA729F09FF852',
 
 
         ]
@@ -40,9 +43,9 @@ buildscript {
         ]
     }
     repositories {
+        maven { url "https://jitpack.io" }
         maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         google()
-        maven { url "https://jitpack.io" }
         maven { url 'https://repo1.maven.org/maven2/' }
     }
     dependencies {
@@ -56,9 +59,9 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url "https://jitpack.io" }
         maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         google()
-        maven { url "https://jitpack.io" }
         maven { url 'https://repo1.maven.org/maven2/' }
     }
 }

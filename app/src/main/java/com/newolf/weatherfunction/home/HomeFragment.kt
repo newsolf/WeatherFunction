@@ -117,7 +117,7 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
 
     private fun updateSevenDayUI(sevenDay: SevenDay) {
         updateTodayDetailElse(sevenDay.forecast[0])
-        forecastAdapter.setNewData(sevenDay.forecast)
+        forecastAdapter.setNewInstance(sevenDay.forecast)
     }
 
     private fun updateTodayDetailElse(forecast: Forecast) {

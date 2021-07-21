@@ -64,7 +64,7 @@ class MainActivity : BaseVMActivity<TodayWeatherViewModel>() {
     override fun startObserve() {
         mViewModel.run {
             mTodayWeatherBean.observe(this@MainActivity, Observer {
-                it?.run {
+                it.run {
                     LogUtils.e("updatetime = ${it.updatetime}")
                     updateTodayWeatherUi(it)
 
@@ -96,7 +96,7 @@ class MainActivity : BaseVMActivity<TodayWeatherViewModel>() {
         if (System.currentTimeMillis() - lastTime < 2000) {
             super.onBackPressed()
         } else {
-            ToastUtils.setBgColor(ResUtils.getColor(R.color.colorAccent))
+            ToastUtils.make().setBgColor(ResUtils.getColor(R.color.colorAccent))
             ToastUtils.showShort(R.string.app_exit)
         }
         lastTime = System.currentTimeMillis();

@@ -34,7 +34,7 @@ data class DetailBean(
 data class SevenDay(
     val citycode: String,
     val cityname: String,
-    val forecast: List<Forecast>,
+    val forecast: MutableList<Forecast>,
     val rcode: Int,
     val rdesc: String,
     val suggestion: Suggestion

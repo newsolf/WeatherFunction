@@ -59,7 +59,7 @@ class App : Application() {
         Utils.init(app)
         LogUtils.getConfig().setLogSwitch(BuildConfig.DEBUG)
         LocalUtils.init(app)
-        ToastUtils.setBgColor(ResUtils.getColor(R.color.colorAccent))
+        ToastUtils.make().setBgColor(ResUtils.getColor(R.color.colorAccent))
     }
 
     private fun initBugly(context: Application) {
